@@ -26,7 +26,7 @@ export const ChatComponent: React.FC = () => {
         {/* CONTACTO: ARRIBA */}
         <section className="h-16 w-full flex justify-between items-center px-1 bg-[#0b1014]">
           <div className="h-full w-64 flex items-center">
-            <IoMdArrowBack className="h-7 w-7" />
+            <IoMdArrowBack className="h-6 w-6" />
             <Image
               src="/kokushibo.jpg"
               width={400}
@@ -44,16 +44,16 @@ export const ChatComponent: React.FC = () => {
             </article>
           </div>
           <div className="h-full flex items-center gap-3">
-            <BiVideo className="h-7 w-7" />
-            <MdOutlineCall className="h-7 w-7" />
-            <BsThreeDotsVertical className="h-7 w-7" />
+            <BiVideo className="h-6 w-6" />
+            <MdOutlineCall className="h-6 w-6" />
+            <BsThreeDotsVertical className="h-6 w-6" />
           </div>
         </section>
 
         {/* ENVIAR MENSAJES: ABAJO */}
         <section className="bg-[#0b1014] h-16 w-full absolute bottom-0 flex items-center gap-2 px-2">
           {/* Contenedor del input y los íconos */}
-          <article className="bg-[#1f272a] flex items-center rounded-full px-2 w-full max-w-[85%] min-w-[150px]">
+          <article className="bg-[#1f272a] h-12 flex items-center rounded-full px-3 w-full max-w-[85%] min-w-[150px]">
             {/* Iconos iniciales con tamaño fijo */}
             <PiSticker className="w-6 h-6 min-w-6 text-gray-400" />
 
@@ -61,11 +61,11 @@ export const ChatComponent: React.FC = () => {
             <input
               type="text"
               placeholder="Mensaje"
-              className="flex-1 bg-transparent text-white px-2 py-2 outline-none min-w-0"
+              className="flex-1 text-lg bg-transparent text-white px-2 py-2 outline-none min-w-0"
             />
 
             {/* Iconos finales con tamaño fijo */}
-            <IoAttach className="w-6 h-6 min-w-6 text-gray-400" />
+            <IoAttach className="w-6 h-6 min-w-6 mr-2 text-gray-400" />
             <MdOutlineCameraAlt className="w-6 h-6 min-w-6 text-gray-400" />
           </article>
 
