@@ -6,10 +6,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import { MdOutlineCall } from "react-icons/md";
 import { BiVideo } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { PiSticker } from "react-icons/pi";
 import { IoAttach } from "react-icons/io5";
 import { MdOutlineCameraAlt } from "react-icons/md";
-import { BiSolidMicrophone } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 
 interface Message {
