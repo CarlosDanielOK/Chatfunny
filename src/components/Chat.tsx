@@ -51,7 +51,7 @@ export const ChatComponent: React.FC = () => {
         </section>
 
         {/* ENVIAR MENSAJES: ABAJO */}
-        <section className="h-16 w-full absolute bottom-0 flex items-center gap-2 px-2">
+        <section className="h-16 w-full absolute bottom-0 flex items-center justify-center gap-2 px-1">
           {/* Contenedor del input y los íconos */}
           <article className="bg-[#1f272a] h-12 flex items-center rounded-full px-3 w-full max-w-[85%] min-w-[150px]">
             {/* Iconos iniciales con tamaño fijo */}
