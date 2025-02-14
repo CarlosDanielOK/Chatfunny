@@ -25,14 +25,14 @@ export const ChatComponent: React.FC = () => {
       >
         {/* CONTACTO: ARRIBA */}
         <section className="h-16 w-full flex justify-between items-center px-1 bg-[#0b1014]">
-          <div className="h-full w-64 flex items-center">
+          <div className="h-full w-64 flex items-center gap-1">
             <IoMdArrowBack className="h-6 w-6" />
             <Image
               src="/kokushibo.jpg"
               width={400}
               height={400}
               alt="foto de perfil"
-              className="h-12 w-12 rounded-full object-cover aspect-square"
+              className="h-10 w-10 rounded-full object-cover aspect-square"
             />
             <article className="px-2 overflow-hidden max-[290px]:w-20">
               <h2 className="text-lg overflow-hidden text-nowrap text-ellipsis">
@@ -51,7 +51,7 @@ export const ChatComponent: React.FC = () => {
         </section>
 
         {/* ENVIAR MENSAJES: ABAJO */}
-        <section className="bg-[#0b1014] h-16 w-full absolute bottom-0 flex items-center gap-2 px-2">
+        <section className="h-16 w-full absolute bottom-0 flex items-center gap-2 px-2">
           {/* Contenedor del input y los íconos */}
           <article className="bg-[#1f272a] h-12 flex items-center rounded-full px-3 w-full max-w-[85%] min-w-[150px]">
             {/* Iconos iniciales con tamaño fijo */}
