@@ -39,6 +39,7 @@ export const ChatComponent: React.FC = () => {
       time: new Date().toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
+        hour12: false,
       }),
     };
     setMessages((prev) => [...prev, newMsg]);
