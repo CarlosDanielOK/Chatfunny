@@ -62,7 +62,7 @@ export const ChatComponent: React.FC = () => {
             <div className="h-full w-64 flex items-center gap-1">
               <IoMdArrowBack className="h-6 w-6" />
               <Image
-                src="/kokushibo.jpg"
+                src="/fotodeperfil.png"
                 width={400}
                 height={400}
                 alt="foto de perfil"
@@ -225,7 +225,7 @@ export const ChatComponent: React.FC = () => {
           </section>
           <section className="flex gap-4">
             <label
-              className={`border-2 h-12 rounded-md flex items-center gap-1 px-2 cursor-pointer ${
+              className={` border-2 h-12 rounded-md flex items-center gap-1 px-2 cursor-pointer ${
                 watch("sender") === "yo"
                   ? "border-blue-500 border-4"
                   : "border-gray-500"
