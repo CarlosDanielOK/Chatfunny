@@ -47,7 +47,8 @@ export const ChatComponent: React.FC = () => {
   };
 
   return (
-    <main className="w-screen h-screen overflow-hidden flex justify-center">
+    <>
+    <main className="overflow-hidden flex justify-center flex-col items-center">
       <div
         className="w-full h-full max-w-[440px] text-white relative min-w-screen min-h-screen"
         style={{
@@ -215,6 +216,8 @@ export const ChatComponent: React.FC = () => {
             </button>
           </form>
 
+        </section>
+      </div>
           <div className="w-full max-w-[85%] flex justify-center gap-4 text-black">
             <label className="flex items-center gap-1 ">
               <input
@@ -230,8 +233,7 @@ export const ChatComponent: React.FC = () => {
               Contacto
             </label>
           </div>
-        </section>
-      </div>
     </main>
+    </>
   );
 };
