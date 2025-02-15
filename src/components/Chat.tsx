@@ -173,7 +173,7 @@ export const ChatComponent: React.FC = () => {
         </section>
 
         {/* ENVIAR MENSAJES: Sección inferior */}
-        <section className="h-20 w-full absolute bottom-0 flex flex-col items-center gap-1 px-1">
+        <section className="h-16 w-full absolute bottom-0 flex flex-col items-center justify-center gap-1 px-1">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-full flex items-center gap-2"
