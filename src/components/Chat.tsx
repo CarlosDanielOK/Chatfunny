@@ -20,14 +20,27 @@ interface Message {
 interface FormValues {
   message: string;
   sender: "yo" | "contacto";
+  contactName: string;
+  contactStatus: string;
+  contactPhoto: string;
 }
 
 export const ChatComponent: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const { register, handleSubmit, reset, watch } = useForm<FormValues>({
-    defaultValues: { message: "", sender: "yo" },
-  });
+  const { register, handleSubmit, reset, watch, resetField } =
+    useForm<FormValues>({
+      defaultValues: {
+        message: "",
+        sender: "yo",
+        contactName: "Carlos Daniel",
+        contactStatus: "últ. vez hoy a las 01:01",
+        contactPhoto: "/fotodeperfil.png",
+      },
+    });
 
+  const contactName = watch("contactName");
+  const contactStatus = watch("contactStatus");
+  const contactPhoto = watch("contactPhoto");
   const messageValue = watch("message", "");
 
   const onSubmit = (data: FormValues) => {
@@ -43,12 +56,12 @@ export const ChatComponent: React.FC = () => {
       }),
     };
     setMessages((prev) => [...prev, newMsg]);
-    reset();
+    resetField("message");
   };
 
   return (
     <>
-      <main className="overflow-hidden flex justify-center flex-col items-center gap-6">
+      <main className="overflow-hidden flex justify-center items-center gap-6">
         <div
           className="w-full h-full max-w-[440px] text-white relative min-w-screen min-h-screen"
           style={{
@@ -62,7 +75,7 @@ export const ChatComponent: React.FC = () => {
             <div className="h-full w-64 flex items-center gap-1">
               <IoMdArrowBack className="h-6 w-6" />
               <Image
-                src="/fotodeperfil.png"
+                src={contactPhoto}
                 width={400}
                 height={400}
                 alt="foto de perfil"
@@ -70,10 +83,10 @@ export const ChatComponent: React.FC = () => {
               />
               <article className="px-2 overflow-hidden max-[290px]:w-20">
                 <h2 className="text-lg overflow-hidden text-nowrap text-ellipsis">
-                  Naruto Uzumaki
+                  {contactName}
                 </h2>
                 <p className="text-sm overflow-hidden text-nowrap text-ellipsis">
-                  últ. vez hoy a las 02:02
+                  {contactStatus}
                 </p>
               </article>
             </div>
@@ -218,14 +231,12 @@ export const ChatComponent: React.FC = () => {
           </section>
         </div>
 
-        {/* Elegir quien envia el mensaje */}
-        <div className="bg-[#0b1b24] w-full max-w-[440px] h-32 flex justify-center items-center gap-3 text-white flex-col">
-          <section>
-            <p>Elige quién envía el mensaje</p>
-          </section>
-          <section className="flex gap-4">
+        {/* Modificar datos */}
+        <div className="border-2 rounded-md p-4 shadow-2xl h-full w-full max-w-[440px]">
+          <p className="text-lg mb-2">Configuración del chat</p>
+          <section className="flex gap-4 mb-4">
             <label
-              className={` border-2 h-12 rounded-md flex items-center gap-1 px-2 cursor-pointer ${
+              className={`border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${
                 watch("sender") === "yo"
                   ? "border-blue-500 border-4"
                   : "border-gray-500"
@@ -236,12 +247,12 @@ export const ChatComponent: React.FC = () => {
                 value="yo"
                 {...register("sender")}
                 defaultChecked
-                className="cursor-pointer"
+                className="cursor-pointer h-12"
               />
               Yo
             </label>
             <label
-              className={`border-2 h-12 rounded-md flex items-center gap-1 px-2 cursor-pointer ${
+              className={`border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${
                 watch("sender") === "contacto"
                   ? "border-blue-500 border-4"
                   : "border-gray-500"
@@ -251,10 +262,45 @@ export const ChatComponent: React.FC = () => {
                 type="radio"
                 value="contacto"
                 {...register("sender")}
-                className="cursor-pointer"
+                className="cursor-pointer h-12"
               />
               Contacto
             </label>
+          </section>
+          <section className="flex flex-col gap-4">
+            <article>
+              <label className="block mb-1">Nombre del contacto</label>
+              <input
+                type="text"
+                {...register("contactName", {
+                  required: true,
+                  minLength: 1,
+                  maxLength: 15,
+                })}
+                className="w-full h-12 p-2 rounded-md border-2"
+                placeholder="Nombre del contacto"
+              />
+            </article>
+            <article>
+              <label className="block mb-1">Estado de conexión</label>
+              <input
+                type="text"
+                {...register("contactStatus", {
+                  maxLength: 25,
+                })}
+                className="w-full h-12 p-2 rounded-md border-2"
+                placeholder="Ej: En línea | últ. vez hoy a las 01:01"
+              />
+            </article>
+            <article>
+              <label className="block mb-1">Foto de perfil (URL)</label>
+              <input
+                type="text"
+                {...register("contactPhoto")}
+                className="w-full h-12 p-2 rounded-md border-2"
+                placeholder="URL de la foto de perfil"
+              />
+            </article>
           </section>
         </div>
       </main>
