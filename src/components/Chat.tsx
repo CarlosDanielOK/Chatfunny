@@ -282,7 +282,7 @@ export const ChatComponent: React.FC = () => {
                 {...register("contactName", {
                   required: "El nombre es obligatorio",
                   minLength: {
-                    value: 3,
+                    value: 1,
                     message: "Mínimo 1 carácter",
                   },
                   maxLength: {
