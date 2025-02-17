@@ -9,6 +9,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoAttach } from "react-icons/io5";
 import { MdOutlineCameraAlt } from "react-icons/md";
 import { useForm } from "react-hook-form";
+import { FaCircleCheck } from "react-icons/fa6";
 
 interface Message {
   id: number;
@@ -27,16 +28,22 @@ interface FormValues {
 
 export const ChatComponent: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const { register, handleSubmit, reset, watch, resetField } =
-    useForm<FormValues>({
-      defaultValues: {
-        message: "",
-        sender: "yo",
-        contactName: "Carlos Daniel",
-        contactStatus: "últ. vez hoy a las 01:01",
-        contactPhoto: "/fotodeperfil.png",
-      },
-    });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    resetField,
+    formState: { errors },
+  } = useForm<FormValues>({
+    defaultValues: {
+      message: "",
+      sender: "yo",
+      contactName: "Carlos Daniel",
+      contactStatus: "últ. vez hoy a las 01:01",
+      contactPhoto: "/fotodeperfil.png",
+    },
+    mode: "onChange",
+  });
 
   const contactName = watch("contactName");
   const contactStatus = watch("contactStatus");
@@ -61,7 +68,7 @@ export const ChatComponent: React.FC = () => {
 
   return (
     <>
-      <main className="overflow-hidden flex justify-center items-center gap-6">
+      <main className="overflow-hidden flex flex-col justify-center items-center gap-6 min-[808px]:flex-row min-[808px]:gap-12 min-[808px]:px-4">
         <div
           className="w-full h-full max-w-[440px] text-white relative min-w-screen min-h-screen"
           style={{
@@ -233,8 +240,9 @@ export const ChatComponent: React.FC = () => {
 
         {/* Modificar datos */}
         <div className="border-2 rounded-md p-4 shadow-2xl h-full w-full max-w-[440px]">
-          <p className="text-lg mb-2">Configuración del chat</p>
-          <section className="flex gap-4 mb-4">
+          <h3 className="text-xl text-center font-bold mb-4">Configuración del chat</h3>
+          <p>Elige quién envía el mensaje</p>
+          <section className="flex gap-4 mb-4 mt-1">
             <label
               className={`border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${
                 watch("sender") === "yo"
@@ -267,33 +275,81 @@ export const ChatComponent: React.FC = () => {
               Contacto
             </label>
           </section>
+
           <section className="flex flex-col gap-4">
             <article>
-              <label className="block mb-1">Nombre del contacto</label>
+              <label>Nombre del contacto</label>
               <input
                 type="text"
-                {...register("contactName", {
-                  required: true,
-                  minLength: 1,
-                  maxLength: 15,
-                })}
-                className="w-full h-12 p-2 rounded-md border-2"
+                className="w-full h-12 p-2 rounded-md border-2 my-1"
                 placeholder="Nombre del contacto"
+                {...register("contactName", {
+                  required: "El nombre es obligatorio",
+                  minLength: {
+                    value: 3,
+                    message: "Mínimo 1 carácter",
+                  },
+                  maxLength: {
+                    value: 15,
+                    message: "Máximo 15 caracteres",
+                  },
+                })}
               />
+              <div className="text-sm flex gap-5">
+                <p
+                  className={
+                    contactName?.length >= 1 ? "text-green-500" : "text-red-500"
+                  }
+                >
+                  <span className="flex items-center gap-1">
+                    <FaCircleCheck />
+                    Mínimo 1 carácter
+                  </span>
+                </p>
+                <p
+                  className={
+                    contactName?.length <= 15
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }
+                >
+                  <span className="flex items-center gap-1">
+                    <FaCircleCheck />
+                    Máximo 15 caracteres
+                  </span>
+                </p>
+              </div>
             </article>
             <article>
-              <label className="block mb-1">Estado de conexión</label>
+              <label>Estado de conexión</label>
               <input
                 type="text"
-                {...register("contactStatus", {
-                  maxLength: 25,
-                })}
-                className="w-full h-12 p-2 rounded-md border-2"
+                className="w-full h-12 p-2 rounded-md border-2 my-1"
                 placeholder="Ej: En línea | últ. vez hoy a las 01:01"
+                {...register("contactStatus", {
+                  maxLength: {
+                    value: 25,
+                    message: "Máximo 25 caracteres",
+                  },
+                })}
               />
+              <div className="text-sm">
+                <p
+                  className={
+                    contactStatus?.length <= 25
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }
+                >
+                  <span className="flex items-center gap-1">
+                    <FaCircleCheck />
+                    Máximo 25 caracteres
+                  </span>
+                </p>
+              </div>
             </article>
             <article>
-              <label className="block mb-1">Foto de perfil (URL)</label>
+              <label>Foto de perfil (URL)</label>
               <input
                 type="text"
                 {...register("contactPhoto")}
