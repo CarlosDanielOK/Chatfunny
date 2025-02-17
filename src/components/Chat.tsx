@@ -63,14 +63,7 @@ export const ChatComponent: React.FC = () => {
   return (
     <>
       <main className="overflow-hidden flex flex-col justify-center items-center gap-6 min-[808px]:flex-row min-[808px]:gap-12 min-[808px]:px-4">
-        <div
-          className="w-full h-full max-w-[440px] text-white relative min-w-screen min-h-screen"
-          style={{
-            backgroundImage: "url(/fondochat.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
+        <div className="w-full h-full max-w-[440px] text-white relative min-w-screen min-h-screen bg-[url(/fondochat.png)] bg-contain bg-center">
           {/* CONTACTO: ARRIBA */}
           <section className="h-16 w-full flex justify-between items-center px-1 bg-[#0b1014]">
             <div className="h-full w-64 flex items-center gap-1">
