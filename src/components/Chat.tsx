@@ -28,13 +28,7 @@ interface FormValues {
 
 export const ChatComponent: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    resetField,
-    formState: { errors },
-  } = useForm<FormValues>({
+  const { register, handleSubmit, watch, resetField } = useForm<FormValues>({
     defaultValues: {
       message: "",
       sender: "yo",
@@ -240,7 +234,9 @@ export const ChatComponent: React.FC = () => {
 
         {/* Modificar datos */}
         <div className="border-2 rounded-md p-4 shadow-2xl h-full w-full max-w-[440px]">
-          <h3 className="text-xl text-center font-bold mb-4">Configuración del chat</h3>
+          <h3 className="text-xl text-center font-bold mb-4">
+            Configuración del chat
+          </h3>
           <p>Elige quién envía el mensaje</p>
           <section className="flex gap-4 mb-4 mt-1">
             <label
