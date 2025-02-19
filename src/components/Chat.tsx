@@ -63,7 +63,7 @@ export const ChatComponent: React.FC = () => {
   return (
     <>
       <main className="overflow-hidden flex flex-col justify-center items-center gap-6 min-[808px]:flex-row min-[808px]:gap-12 min-[808px]:px-4">
-        <div className="w-full h-full max-w-[440px] text-white relative min-w-screen min-h-screen bg-[url(/fondochat.png)] bg-contain bg-center">
+        <div className="w-full h-full max-w-[440px] relative min-w-screen min-h-screen bg-[url(/fondochat.png)] bg-contain bg-center border border-[#363636]">
           {/* CONTACTO: ARRIBA */}
           <section className="h-16 w-full flex justify-between items-center px-1 bg-[#0b1014]">
             <div className="h-full w-64 flex items-center gap-1">
@@ -226,17 +226,17 @@ export const ChatComponent: React.FC = () => {
         </div>
 
         {/* Modificar datos */}
-        <div className="border-2 rounded-md p-4 shadow-2xl h-full w-full max-w-[440px]">
+        <div className="border border-gray-800 rounded-sm p-6 h-full w-full max-w-[440px]">
           <h3 className="text-xl text-center font-bold mb-4">
             Configuración del chat
           </h3>
           <p>Elige quién envía el mensaje</p>
           <section className="flex gap-4 mb-4 mt-1">
             <label
-              className={`border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${
+              className={`h-12 border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${
                 watch("sender") === "yo"
                   ? "border-blue-500 border-4"
-                  : "border-gray-500"
+                  : "border-[#555555]"
               }`}
             >
               <input
@@ -244,22 +244,22 @@ export const ChatComponent: React.FC = () => {
                 value="yo"
                 {...register("sender")}
                 defaultChecked
-                className="cursor-pointer h-12"
+                className="cursor-pointer"
               />
               Yo
             </label>
             <label
-              className={`border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${
+              className={`h-12 border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${
                 watch("sender") === "contacto"
                   ? "border-blue-500 border-4"
-                  : "border-gray-500"
+                  : "border-[#555555]"
               }`}
             >
               <input
                 type="radio"
                 value="contacto"
                 {...register("sender")}
-                className="cursor-pointer h-12"
+                className="cursor-pointer"
               />
               Contacto
             </label>
@@ -270,7 +270,7 @@ export const ChatComponent: React.FC = () => {
               <label>Nombre del contacto</label>
               <input
                 type="text"
-                className="w-full h-12 p-2 rounded-md border-2 my-1"
+                className="w-full h-12 p-2 rounded-md border-2 my-1 border-[#555555] bg-[#121212]"
                 placeholder="Nombre del contacto"
                 {...register("contactName", {
                   required: "El nombre es obligatorio",
@@ -313,7 +313,7 @@ export const ChatComponent: React.FC = () => {
               <label>Estado de conexión</label>
               <input
                 type="text"
-                className="w-full h-12 p-2 rounded-md border-2 my-1"
+                className="w-full h-12 p-2 rounded-md border-2 border-[#555555] my-1 bg-[#121212]"
                 placeholder="Ej: En línea | últ. vez hoy a las 01:01"
                 {...register("contactStatus", {
                   maxLength: {
@@ -342,7 +342,7 @@ export const ChatComponent: React.FC = () => {
               <input
                 type="text"
                 {...register("contactPhoto")}
-                className="w-full h-12 p-2 rounded-md border-2"
+                className="w-full h-12 p-2 rounded-md border-2 border-[#555555] bg-[#121212]"
                 placeholder="URL de la foto de perfil"
               />
             </article>
