@@ -87,13 +87,13 @@ export const NavBarResponsive: React.FC = () => {
               <p>Sobre mí</p>
             </Link>
             <Link
-              href="/"
+              href="/login"
               className="h-10 flex items-center gap-2 rounded-md m-2 px-2 hover:bg-[#3b3d3e]"
             >
               <p>Iniciar sesión</p>
             </Link>
             <Link
-              href="/"
+              href="/signup"
               className="h-10 flex items-center gap-2 rounded-md m-2 px-2 hover:bg-[#3b3d3e]"
             >
               <p>Registrarte</p>
