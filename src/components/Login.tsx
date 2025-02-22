@@ -42,7 +42,7 @@ export const LoginComponent = () => {
 
         {/* Formulario de login */}
         <section className="w-full h-full md:w-1/2 flex items-center justify-center">
-          <div className="w-full md:border md:border-[#363636] rounded-sm md:bg-transparent py-6 md:py-10 md:w-[85%]">
+          <div className="w-full md:border md:border-[#363636] rounded-sm md:bg-transparent my-2 md:py-10 md:w-[85%]">
             <article className="flex flex-col items-center gap-1 mb-6">
               <Image
                 src="/logo.png"
