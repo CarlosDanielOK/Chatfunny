@@ -1,8 +1,11 @@
+import { IFormValues } from "@/interfaces/types";
+import { UseFormSetValue } from "react-hook-form";
+
 export const subirArchivo = async (
   file: File,
-  setValue: Function,
-  setUploadStatus: Function,
-  setUploadError: Function
+  setValue: UseFormSetValue<IFormValues>,
+  setUploadStatus: (status: "idle" | "loading" | "success" | "error") => void,
+  setUploadError: (error: string | null) => void
 ) => {
   const unsignedUploadPreset = "carloschat";
   const cloudName = "ddjfjdyii";

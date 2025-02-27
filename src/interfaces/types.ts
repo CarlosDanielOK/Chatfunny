@@ -1,3 +1,9 @@
+import {
+  UseFormHandleSubmit,
+  UseFormRegister,
+  UseFormWatch,
+} from "react-hook-form";
+
 export interface IMessage {
   id: number;
   text: string;
@@ -24,10 +30,10 @@ export interface IChatMensajesProps {
 }
 
 export interface IChatFormProps {
-  onSubmit: (data: any) => void;
+  onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
   messageValue: string;
-  handleSubmit: any;
-  register: any;
+  handleSubmit: UseFormHandleSubmit<IFormValues>;
+  register: UseFormRegister<IFormValues>;
 }
 
 export interface IChatSettingsProps {
@@ -36,6 +42,6 @@ export interface IChatSettingsProps {
   handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   uploadStatus: "idle" | "loading" | "success" | "error";
   uploadError: string | null;
-  watch: any;
-  register: any;
+  watch: UseFormWatch<IFormValues>;
+  register: UseFormRegister<IFormValues>;
 }
