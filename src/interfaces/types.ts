@@ -1,8 +1,4 @@
-import {
-  UseFormHandleSubmit,
-  UseFormRegister,
-  UseFormWatch,
-} from "react-hook-form";
+import { UseFormHandleSubmit, UseFormRegister, UseFormWatch } from "react-hook-form";
 
 export interface IMessage {
   id: number;
@@ -30,7 +26,7 @@ export interface IChatMensajesProps {
 }
 
 export interface IChatFormProps {
-  onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
+  onSubmit: (data: IFormValues) => void;
   messageValue: string;
   handleSubmit: UseFormHandleSubmit<IFormValues>;
   register: UseFormRegister<IFormValues>;
