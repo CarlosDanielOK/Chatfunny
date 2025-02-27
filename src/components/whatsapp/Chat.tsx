@@ -72,7 +72,7 @@ export const ChatComponent: React.FC = () => {
 
           <ChatForm
             messageValue={messageValue}
-            onSubmit={(data: IFormValues) => handleSubmit(onSubmit)()}
+            onSubmit={() => handleSubmit(onSubmit)()}
             handleSubmit={handleSubmit}
             register={register}
           />
