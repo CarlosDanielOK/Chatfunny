@@ -1,11 +1,11 @@
-import { ChatComponent } from "@/components/Chat";
+import { ChatComponent } from "@/components/whatsapp/Chat";
 import { NavBar } from "@/components/NavBar";
 
 export default function Home() {
   return (
     <>
-      <NavBar />
-      <ChatComponent />;
+      {/* <NavBar /> */}
+      <ChatComponent />
     </>
   );
 }

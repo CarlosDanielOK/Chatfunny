@@ -12,11 +12,11 @@ export const LoginComponent = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsFading(true); // Comenzamos fade-out
+      setIsFading(true);
       setTimeout(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imagenes.length);
-        setIsFading(false); // Fade-in al cambiar la imagen
-      }, 500); // Duración del fade out (500ms)
+        setIsFading(false);
+      }, 500);
     }, 4000);
 
     return () => clearInterval(interval);
