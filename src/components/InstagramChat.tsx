@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 import { IFormValues, IMessage } from "@/interfaces/types";
 import { subirArchivo } from "@/api/subirArchivo";
 import Image from "next/image";
-import { MdOutlineCameraAlt } from "react-icons/md";
-import { IoAttach } from "react-icons/io5";
 import { FaCircleCheck } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowRoundBack } from "react-icons/io";
