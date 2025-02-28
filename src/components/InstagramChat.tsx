@@ -21,7 +21,7 @@ export const InstagramChat: React.FC = () => {
         sender: "yo",
         contactName: "Carlos Daniel",
         contactStatus: "Activo(a) ahora",
-        contactPhoto: "/fotodeperfil.png",
+        contactPhoto: "/fotodeperfilig.png",
       },
       mode: "onChange",
     });
