@@ -48,7 +48,7 @@ export const NavBarResponsive: React.FC = () => {
               <p>WhatsApp</p>
             </Link>
             <Link
-              href="/"
+              href="/instagram"
               className="h-10 flex items-center gap-2 rounded-md m-2 px-2 hover:bg-[#3b3d3e]"
             >
               <Image

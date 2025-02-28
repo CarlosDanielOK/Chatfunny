@@ -27,15 +27,15 @@ export const NavBar = () => {
           WhatsApp
           <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform"></span>
         </Link>
-        <Link href="/" className="relative group">
+        <Link href="/instagram" className="relative group">
           Instagram
           <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform"></span>
         </Link>
-        <Link href="/" className="relative group">
+        <Link href="/facebook" className="relative group">
           Facebook
           <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform"></span>
         </Link>
-        <Link href="/" className="relative group">
+        <Link href="/sobremi" className="relative group">
           Sobre mí
           <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform"></span>
         </Link>
