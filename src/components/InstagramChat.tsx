@@ -61,41 +61,42 @@ export const InstagramChat: React.FC = () => {
     }
   };
 
-  // Función auxiliar para determinar las clases de redondeado para mensajes "yo"
+  // Para mensajes de "yo"
   const getRoundedClasses = (index: number, messages: IMessage[]): string => {
     const current = messages[index];
-    if (current.sender !== "yo") return "rounded-full"; // Si no es "yo", aplicamos un estilo por defecto
-
+    if (current.sender !== "yo") return "rounded-full";
+    // Si el mensaje tiene más de 35 caracteres, usamos rounded-2xl; de lo contrario, rounded-full.
+    const baseClass = current.text.length > 35 ? "rounded-2xl" : "rounded-full";
     const prev = messages[index - 1];
     const next = messages[index + 1];
 
     const isFirst = !prev || prev.sender !== "yo";
     const isLast = !next || next.sender !== "yo";
 
-    if (isFirst && isLast) return "rounded-full"; // Solo mensaje en el grupo
-    if (isFirst && !isLast) return "rounded-full rounded-br-none"; // Primer mensaje de al menos dos
-    if (!isFirst && isLast) return "rounded-full rounded-tr-none"; // Último mensaje del grupo
-    return "rounded-full rounded-r-none"; // Mensaje intermedio
+    if (isFirst && isLast) return baseClass; // Solo mensaje en el grupo
+    if (isFirst && !isLast) return `${baseClass} rounded-br-sm`; // Primer mensaje del grupo (dos o más)
+    if (!isFirst && isLast) return `${baseClass} rounded-tr-sm`; // Último mensaje del grupo
+    return `${baseClass} rounded-r-sm`; // Mensaje intermedio
   };
 
-  // Función auxiliar para determinar las clases de redondeado para mensajes enviados por "contacto"
+  // Para mensajes de "contacto"
   const getRoundedClassesContact = (
     index: number,
     messages: IMessage[]
   ): string => {
     const current = messages[index];
     if (current.sender !== "contacto") return "rounded-full";
-
+    const baseClass = current.text.length > 35 ? "rounded-2xl" : "rounded-full";
     const prev = messages[index - 1];
     const next = messages[index + 1];
 
     const isFirst = !prev || prev.sender !== "contacto";
     const isLast = !next || next.sender !== "contacto";
 
-    if (isFirst && isLast) return "rounded-full"; // Mensaje único
-    if (isFirst && !isLast) return "rounded-full rounded-bl-none"; // Primer mensaje de grupo (dos o más)
-    if (!isFirst && isLast) return "rounded-full rounded-tl-none"; // Último mensaje del grupo
-    return "rounded-full rounded-l-none"; // Mensaje intermedio
+    if (isFirst && isLast) return baseClass;
+    if (isFirst && !isLast) return `${baseClass} rounded-bl-sm`;
+    if (!isFirst && isLast) return `${baseClass} rounded-tl-sm`;
+    return `${baseClass} rounded-l-sm`;
   };
 
   return (
@@ -171,14 +172,12 @@ export const InstagramChat: React.FC = () => {
           </section>
 
           {/* ChatMensajes */}
-          {/* ChatMensajes */}
           <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2">
             {messages.map((msg, index) => {
               const isSenderMe = msg.sender === "yo";
               if (isSenderMe) {
-                // Mensajes enviados por "yo"
                 return (
-                  <div key={msg.id} className={`mt-0.5 flex justify-end`}>
+                  <div key={msg.id} className="mt-0.5 flex justify-end">
                     <div
                       className={`px-3 py-2 flex max-w-[80%] bg-[#5653f8] ${getRoundedClasses(
                         index,
@@ -190,11 +189,11 @@ export const InstagramChat: React.FC = () => {
                   </div>
                 );
               } else {
-                // Mensajes enviados por "contacto"
                 const roundedClasses = getRoundedClassesContact(
                   index,
                   messages
                 );
+                // Se determina si es el último mensaje del grupo de "contacto"
                 const isLastContact =
                   !messages[index + 1] ||
                   messages[index + 1].sender !== "contacto";
@@ -203,9 +202,9 @@ export const InstagramChat: React.FC = () => {
                     key={msg.id}
                     className="mt-0.5 flex justify-start items-end"
                   >
-                    {/* Reserva el espacio de la foto siempre, pero solo muestra la imagen en el último mensaje del grupo */}
+                    {/* Reserva el espacio de la foto; si es el último del grupo se muestra la foto, de lo contrario se deja el espacio */}
                     <div className="w-8 h-8 mr-2">
-                      {isLastContact && contactPhoto ? (
+                      {isLastContact ? (
                         <Image
                           src={contactPhoto}
                           width={400}
@@ -214,7 +213,6 @@ export const InstagramChat: React.FC = () => {
                           className="h-8 w-8 rounded-full object-cover"
                         />
                       ) : (
-                        // Si no hay foto o no es el último mensaje, se deja un espacio vacío
                         <div className="h-8 w-8" />
                       )}
                     </div>
