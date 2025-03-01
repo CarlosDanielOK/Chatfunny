@@ -61,6 +61,43 @@ export const InstagramChat: React.FC = () => {
     }
   };
 
+  // Función auxiliar para determinar las clases de redondeado para mensajes "yo"
+  const getRoundedClasses = (index: number, messages: IMessage[]): string => {
+    const current = messages[index];
+    if (current.sender !== "yo") return "rounded-full"; // Si no es "yo", aplicamos un estilo por defecto
+
+    const prev = messages[index - 1];
+    const next = messages[index + 1];
+
+    const isFirst = !prev || prev.sender !== "yo";
+    const isLast = !next || next.sender !== "yo";
+
+    if (isFirst && isLast) return "rounded-full"; // Solo mensaje en el grupo
+    if (isFirst && !isLast) return "rounded-full rounded-br-none"; // Primer mensaje de al menos dos
+    if (!isFirst && isLast) return "rounded-full rounded-tr-none"; // Último mensaje del grupo
+    return "rounded-full rounded-r-none"; // Mensaje intermedio
+  };
+
+  // Función auxiliar para determinar las clases de redondeado para mensajes enviados por "contacto"
+  const getRoundedClassesContact = (
+    index: number,
+    messages: IMessage[]
+  ): string => {
+    const current = messages[index];
+    if (current.sender !== "contacto") return "rounded-full";
+
+    const prev = messages[index - 1];
+    const next = messages[index + 1];
+
+    const isFirst = !prev || prev.sender !== "contacto";
+    const isLast = !next || next.sender !== "contacto";
+
+    if (isFirst && isLast) return "rounded-full"; // Mensaje único
+    if (isFirst && !isLast) return "rounded-full rounded-bl-none"; // Primer mensaje de grupo (dos o más)
+    if (!isFirst && isLast) return "rounded-full rounded-tl-none"; // Último mensaje del grupo
+    return "rounded-full rounded-l-none"; // Mensaje intermedio
+  };
+
   return (
     <>
       <main className="overflow-hidden flex flex-col justify-center items-center gap-6 min-[808px]:flex-row min-[808px]:gap-12 min-[808px]:px-4">
@@ -134,90 +171,61 @@ export const InstagramChat: React.FC = () => {
           </section>
 
           {/* ChatMensajes */}
+          {/* ChatMensajes */}
           <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2">
-            {messages.map((msg) => {
+            {messages.map((msg, index) => {
               const isSenderMe = msg.sender === "yo";
-              return (
-                <div
-                  key={msg.id}
-                  className={`mt-2 flex ${
-                    isSenderMe ? "justify-end" : "justify-start"
-                  }`}
-                >
-                  {isSenderMe ? (
-                    <>
-                      <div
-                        className={`px-3 py-2 rounded-xl flex rounded-tr-none max-w-[85%] bg-[#134d37] ${
-                          msg.text.length > 15 ? "flex-wrap" : ""
-                        }`}
-                      >
-                        <p className="w-full break-words">{msg.text}</p>
-                        <p className="text-sm self-end pl-2 pr-1 text-[#8caa9e] ml-auto">
-                          {msg.time}
-                        </p>
-                        <svg
-                          viewBox="0 0 16 11"
-                          height="11"
-                          width="16"
-                          preserveAspectRatio="xMidYMid meet"
-                          fill="#54bce6"
-                          className="self-end my-1 flex-shrink-0"
-                        >
-                          <title>msg-dblcheck</title>
-                          <path d="M11.0714 0.652832C10.991 0.585124 10.8894 0.55127 10.7667 0.55127C10.6186 0.55127 10.4916 0.610514 10.3858 0.729004L4.19688 8.36523L1.79112 6.09277C1.7488 6.04622 1.69802 6.01025 1.63877 5.98486C1.57953 5.95947 1.51817 5.94678 1.45469 5.94678C1.32351 5.94678 1.20925 5.99544 1.11192 6.09277L0.800883 6.40381C0.707784 6.49268 0.661235 6.60482 0.661235 6.74023C0.661235 6.87565 0.707784 6.98991 0.800883 7.08301L3.79698 10.0791C3.94509 10.2145 4.11224 10.2822 4.29844 10.2822C4.40424 10.2822 4.5058 10.259 4.60313 10.2124C4.70046 10.1659 4.78086 10.1003 4.84434 10.0156L11.4903 1.59863C11.5623 1.5013 11.5982 1.40186 11.5982 1.30029C11.5982 1.14372 11.5348 1.01888 11.4078 0.925781L11.0714 0.652832ZM8.6212 8.32715C8.43077 8.20866 8.2488 8.09017 8.0753 7.97168C7.99489 7.89128 7.8891 7.85107 7.75791 7.85107C7.6098 7.85107 7.4892 7.90397 7.3961 8.00977L7.10411 8.33984C7.01947 8.43717 6.97715 8.54508 6.97715 8.66357C6.97715 8.79476 7.0237 8.90902 7.1168 9.00635L8.1959 10.0791C8.33132 10.2145 8.49636 10.2822 8.69102 10.2822C8.79681 10.2822 8.89838 10.259 8.99571 10.2124C9.09304 10.1659 9.17556 10.1003 9.24327 10.0156L15.8639 1.62402C15.9358 1.53939 15.9718 1.43994 15.9718 1.32568C15.9718 1.1818 15.9125 1.05697 15.794 0.951172L15.4386 0.678223C15.3582 0.610514 15.2587 0.57666 15.1402 0.57666C14.9964 0.57666 14.8715 0.635905 14.7657 0.754395L8.6212 8.32715Z"></path>
-                        </svg>
-                      </div>
-                      <svg
-                        viewBox="0 0 8 13"
-                        height="13"
-                        width="8"
-                        preserveAspectRatio="xMidYMid meet"
-                      >
-                        <title>tail-out</title>
-                        <path
-                          opacity="0.13"
-                          d="M5.188,1H0v11.193l6.467-8.625 C7.526,2.156,6.958,1,5.188,1z"
-                          fill="#134d37"
-                        ></path>
-                        <path
-                          fill="#134d37"
-                          d="M5.188,0H0v11.193l6.467-8.625C7.526,1.156,6.958,0,5.188,0z"
-                        ></path>
-                      </svg>
-                    </>
-                  ) : (
-                    <>
-                      <svg
-                        viewBox="0 0 8 13"
-                        height="13"
-                        width="8"
-                        preserveAspectRatio="xMidYMid meet"
-                      >
-                        <title>tail-in</title>
-                        <path
-                          opacity="0.13"
-                          fill="#1f272a"
-                          d="M1.533,3.568L8,12.193V1H2.812 C1.042,1,0.474,2.156,1.533,3.568z"
-                        ></path>
-                        <path
-                          fill="#1f272a"
-                          d="M1.533,2.568L8,11.193V0L2.812,0C1.042,0,0.474,1.156,1.533,2.568z"
-                        ></path>
-                      </svg>
-                      <div
-                        className={`px-3 py-2 rounded-xl flex rounded-tl-none max-w-[85%] bg-[#1f272a] ${
-                          msg.text.length > 15 ? "flex-wrap" : ""
-                        }`}
-                      >
-                        <p className="w-full break-words">{msg.text}</p>
-                        <p className="text-sm self-end pl-2 text-[#909398] ml-auto">
-                          {msg.time}
-                        </p>
-                      </div>
-                    </>
-                  )}
-                </div>
-              );
+              if (isSenderMe) {
+                // Mensajes enviados por "yo"
+                return (
+                  <div key={msg.id} className={`mt-0.5 flex justify-end`}>
+                    <div
+                      className={`px-3 py-2 flex max-w-[80%] bg-[#5653f8] ${getRoundedClasses(
+                        index,
+                        messages
+                      )}`}
+                    >
+                      <p className="w-full break-words">{msg.text}</p>
+                    </div>
+                  </div>
+                );
+              } else {
+                // Mensajes enviados por "contacto"
+                const roundedClasses = getRoundedClassesContact(
+                  index,
+                  messages
+                );
+                const isLastContact =
+                  !messages[index + 1] ||
+                  messages[index + 1].sender !== "contacto";
+                return (
+                  <div
+                    key={msg.id}
+                    className="mt-0.5 flex justify-start items-end"
+                  >
+                    {/* Reserva el espacio de la foto siempre, pero solo muestra la imagen en el último mensaje del grupo */}
+                    <div className="w-8 h-8 mr-2">
+                      {isLastContact && contactPhoto ? (
+                        <Image
+                          src={contactPhoto}
+                          width={400}
+                          height={400}
+                          alt="foto de perfil"
+                          className="h-8 w-8 rounded-full object-cover"
+                        />
+                      ) : (
+                        // Si no hay foto o no es el último mensaje, se deja un espacio vacío
+                        <div className="h-8 w-8" />
+                      )}
+                    </div>
+                    <div
+                      className={`px-3 py-2 flex max-w-[85%] bg-[#1f272a] ${roundedClasses}`}
+                    >
+                      <p className="w-full break-words">{msg.text}</p>
+                    </div>
+                  </div>
+                );
+              }
             })}
           </section>
 
