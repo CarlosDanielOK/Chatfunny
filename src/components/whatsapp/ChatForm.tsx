@@ -15,7 +15,7 @@ export const ChatForm: React.FC<IChatFormProps> = ({
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex items-center gap-2"
       >
-        <article className="bg-[#1f272a] h-12 flex items-center rounded-full px-3 w-full max-w-[85%] min-w-[150px]">
+        <article className="bg-[#1f272a] h-12 ml-0.5 flex items-center rounded-full px-3 w-full max-w-[85%] min-w-[150px]">
           <svg viewBox="0 0 24 24" height="24" width="24" fill="none">
             <path
               d="M8.5 10.25c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zM17 8.75c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5z"
