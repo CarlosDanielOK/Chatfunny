@@ -17,7 +17,7 @@ export const ChatComponent: React.FC = () => {
         message: "",
         sender: "yo",
         contactName: "Carlos Daniel",
-        contactStatus: "últ. vez hoy a las 01:01",
+        contactStatus: "En línea",
         contactPhoto: "/fotodeperfil.png",
       },
       mode: "onChange",

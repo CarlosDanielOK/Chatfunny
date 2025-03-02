@@ -12,7 +12,7 @@ export const NavBarResponsive: React.FC = () => {
   };
 
   return (
-    <div className="relative inline-block text-left lg:hidden">
+    <div className="relative inline-block text-left sm:hidden">
       <button
         onClick={toggleMenu}
         className="w-12 h-12 flex items-center justify-center"
@@ -85,18 +85,6 @@ export const NavBarResponsive: React.FC = () => {
                 className="h-7 w-7 rounded-md"
               />
               <p>Sobre mí</p>
-            </Link>
-            <Link
-              href="/login"
-              className="h-10 flex items-center gap-2 rounded-md m-2 px-2 hover:bg-[#3b3d3e]"
-            >
-              <p>Iniciar sesión</p>
-            </Link>
-            <Link
-              href="/signup"
-              className="h-10 flex items-center gap-2 rounded-md m-2 px-2 hover:bg-[#3b3d3e]"
-            >
-              <p>Registrarte</p>
             </Link>
           </div>
         </div>
