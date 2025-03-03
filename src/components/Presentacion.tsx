@@ -1,7 +1,7 @@
-import { CircularGallery } from "./animations/CircularGallery";
 import { GlitchText } from "./animations/GlitchText";
 import { SplitText } from "./animations/SplitText";
 import { Cards } from "./Cards";
+import { CircularGallery } from "./animations/CircularGallery";
 
 export const Presentacion = () => {
   return (
@@ -28,7 +28,12 @@ export const Presentacion = () => {
           </GlitchText>
         </h1>
         <div className="relative h-96 md:h-[500px] lg:h-[600px]">
-          <CircularGallery bend={3} textColor="#ffffff" borderRadius={0.05} />
+          <CircularGallery
+            items={[]}
+            bend={3}
+            textColor="#ffffff"
+            borderRadius={0.05}
+          />
         </div>
       </section>
       <section>
