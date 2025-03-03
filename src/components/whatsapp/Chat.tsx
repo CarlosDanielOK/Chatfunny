@@ -8,7 +8,6 @@ import { ChatMensajes } from "./ChatMensajes";
 import { ChatForm } from "./ChatForm";
 import { ChatSettings } from "./ChatSettings";
 import { subirArchivo } from "@/api/subirArchivo";
-import { SplitText } from "../animations/SplitText";
 import { toPng } from "html-to-image";
 import { StarBorder } from "../animations/StarBorder";
 
