@@ -18,7 +18,7 @@ export const NavBarResponsive: React.FC = () => {
         className="w-12 h-12 flex items-center justify-center"
       >
         <Image
-          src="/fotodeperfil.png"
+          src="/carlos.png"
           width={400}
           height={400}
           alt="foto de perfil"
@@ -35,7 +35,7 @@ export const NavBarResponsive: React.FC = () => {
             aria-labelledby="options-menu"
           >
             <Link
-              href="/"
+              href="/whatsapp"
               className="h-10 flex items-center gap-2 rounded-md m-2 px-2 hover:bg-[#3b3d3e]"
             >
               <Image

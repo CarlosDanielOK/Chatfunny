@@ -83,6 +83,31 @@ export const Cards = () => {
           </StarBorder>
         </Link>
       </SpotlightCard>
+
+      <SpotlightCard
+        className="custom-spotlight-card h-72 w-72 flex flex-col justify-between items-center"
+        spotlightColor="rgba(8, 102, 255, 0.4)"
+      >
+        <Image
+          src="/messenger.png"
+          width={400}
+          height={400}
+          alt="Messenger"
+          className="w-12 h-12 rounded-md"
+        />
+        <h2 className="text-xl font-bold">Messenger</h2>
+        <p className="text-center">Crea un chat personalizado para Messenger.</p>
+        <Link href="/facebook">
+          <StarBorder
+            as="button"
+            className="custom-class"
+            color="#0866ff"
+            speed="6s"
+          >
+            Crear ahora
+          </StarBorder>
+        </Link>
+      </SpotlightCard>
     </div>
   );
 };
