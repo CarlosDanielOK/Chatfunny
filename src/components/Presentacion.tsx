@@ -3,6 +3,7 @@ import { SplitText } from "./animations/SplitText";
 import { Cards } from "./Cards";
 import { CircularGallery } from "./animations/CircularGallery";
 import Image from "next/image";
+import { ScrollButton } from "./ScrollButton";
 
 export const Presentacion = () => {
   return (
@@ -47,7 +48,7 @@ export const Presentacion = () => {
           />
         </div>
       </section>
-      <section>
+      <section id="cards-section">
         <h2 className="flex flex-col justify-center items-center truncate mt-10 mb-6">
           <SplitText
             text="Elige tu chat personalizado:"
@@ -76,7 +77,7 @@ export const Presentacion = () => {
           />
         </h2>
         <article className="flex flex-col sm:flex-row justify-center items-center">
-          <div className="sm:w-[80vw] flex flex-col sm:flex-row justify-center items-center sm:my-4">
+          <div className="sm:w-[90vw] md:w-[80vw] lg:w-[60vw] flex flex-col sm:flex-row justify-center items-center sm:my-4">
             <div className="w-[90vw] my-4 md:w-[50%] sm:flex sm:justify-center sm:px-4 sm:items-center">
               <p className="sm:max-w-96">
                 Configura el chat a tu gusto, puedes elegir quién envía los
@@ -112,7 +113,7 @@ export const Presentacion = () => {
           />
         </h2>
         <article className="flex flex-col sm:flex-row justify-center items-center">
-          <div className="sm:w-[80vw] flex flex-col sm:flex-row justify-center items-center sm:my-4">
+          <div className="sm:w-[90vw] md:w-[80vw] lg:w-[60vw] flex flex-col sm:flex-row justify-center items-center sm:my-4">
             <div className="w-[90vw] my-4 md:w-[50%] sm:flex sm:justify-center sm:px-4 sm:items-center">
               <p className="sm:max-w-96">
                 Puedes sacar una captura de pantalla de tu chat personalizado
@@ -132,6 +133,9 @@ export const Presentacion = () => {
             </div>
           </div>
         </article>
+      </section>
+      <section className="flex justify-center items-center mt-12">
+        <ScrollButton targetId="cards-section" buttonText="Empieza ahora" />
       </section>
     </main>
   );

@@ -18,7 +18,7 @@ export const NavBarResponsive: React.FC = () => {
         className="w-12 h-12 flex items-center justify-center"
       >
         <Image
-          src="/carlos.png"
+          src="/Carlos.jpg"
           width={400}
           height={400}
           alt="foto de perfil"
@@ -74,17 +74,17 @@ export const NavBarResponsive: React.FC = () => {
               <p>Facebook</p>
             </Link>
             <Link
-              href="/"
+              href="/facebook"
               className="h-10 flex items-center gap-2 rounded-md m-2 px-2 hover:bg-[#3b3d3e]"
             >
               <Image
-                src="/sobremi.png"
+                src="/messenger.png"
                 width={480}
                 height={480}
-                alt="Sobre mí"
+                alt="Messenger"
                 className="h-7 w-7 rounded-md"
               />
-              <p>Sobre mí</p>
+              <p>Messenger</p>
             </Link>
           </div>
         </div>

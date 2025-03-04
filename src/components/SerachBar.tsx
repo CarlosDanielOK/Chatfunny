@@ -30,7 +30,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         onClick={() => setSearchActive(true)}
         className="hover:text-gray-300 transition"
       >
-        <IoSearch className="w-7 h-7 lg:w-5 lg:h-5" />
+        <IoSearch className="w-7 h-7 sm:w-6 sm:h-6" />
       </button>
       {searchActive && (
         <div className="fixed inset-0 z-50 flex flex-col bg-black bg-opacity-75 backdrop-blur-sm p-4">

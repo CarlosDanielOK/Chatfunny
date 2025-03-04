@@ -1,34 +1,32 @@
 import Link from "next/link";
 import React from "react";
 import { GoArrowUpRight } from "react-icons/go";
+import { FaInstagram } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
 
 export const Footer = () => {
   return (
-    <footer className="py-6 mt-10 px-2 border-t border-[#272727] w-full flex flex-col items-center justify-center">
-      <div className="flex justify-center items-center space-x-14">
-        <section className="">
-          <p className="text-[#f2f2f280] text-sm">CONTACTO</p>
-
-          <Link
-            href="mailto:carlosdaniellazo06@gmail.com"
-            className="flex items-center space-x-2"
-          >
-            <p>Email</p>
-            <GoArrowUpRight />
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/carlos-daniel-lazo/"
-            target="_blank"
-            className="flex items-center space-x-2"
-          >
-            <p>LinkedIn</p>
-            <GoArrowUpRight />
-          </Link>
-        </section>
+    <footer className="py-12 px-2 border-t border-[#272727] w-full flex flex-col items-center justify-center mt-10">
+      <h3 className="text-[#f2f2f280]">CONTACTO</h3>
+      <div className="flex justify-center items-center space-x-8 mt-2">
+        <Link
+          href="mailto:carlosdaniellazo06@gmail.com"
+          className="flex items-center space-x-1"
+        >
+          <p>Instagram</p>
+          <FaInstagram />
+        </Link>
+        <Link
+          href="https://www.linkedin.com/in/carlos-daniel-lazo/"
+          target="_blank"
+          className="flex items-center space-x-1"
+        >
+          <p>TikTok</p>
+          <FaTiktok />
+        </Link>
       </div>
-
-      <div className="mt-12 text-center">
-        <p>&copy; 2025 Carlos Lazo. Todos los derechos reservados.</p>
+      <div className="mt-6 text-center">
+        <p>&copy; 2025 Carlos Daniel. Todos los derechos reservados.</p>
       </div>
     </footer>
   );

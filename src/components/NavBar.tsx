@@ -36,6 +36,10 @@ export const NavBar = () => {
           Facebook
           <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform"></span>
         </Link>
+        <Link href="/facebook" className="relative group hidden md:block">
+          Messenger
+          <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+        </Link>
         <SearchBar
           searchActive={searchActive}
           setSearchActive={setSearchActive}
@@ -43,19 +47,20 @@ export const NavBar = () => {
       </nav>
 
       {/* Sobre mi */}
-      <Link
-        href="/sobremi"
-        className="hidden sm:flex gap-2 w-36 items-center justify-end"
+      <StarBorder
+        as="button"
+        className="custom-class"
+        color="rgb(230, 0, 35)"
+        speed="6s"
+        onClick={() => {
+          const section = document.getElementById("cards-section");
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
       >
-        <StarBorder
-          as="button"
-          className="custom-class"
-          color="rgb(230, 0, 35)"
-          speed="6s"
-        >
-          Sobre mí
-        </StarBorder>
-      </Link>
+        Crear chat
+      </StarBorder>
 
       {/* Menú de navegación y botón de búsqueda para dispositivos móviles */}
       <section className="flex items-center justify-center gap-3 sm:hidden">
