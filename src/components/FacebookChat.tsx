@@ -12,6 +12,10 @@ import { FaVideo } from "react-icons/fa";
 import { FaCamera } from "react-icons/fa";
 import { FaRegImage } from "react-icons/fa6";
 import { FaMicrophone } from "react-icons/fa6";
+import { SplitText } from "./animations/SplitText";
+import { Cards } from "./Cards";
+import { useDownloadChat } from "@/hooks/useDownloadChat";
+import { StarBorder } from "./animations/StarBorder";
 
 export const FacebookChat: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -99,10 +103,27 @@ export const FacebookChat: React.FC = () => {
     return `${baseClass} rounded-l-none`;
   };
 
+  const { chatRef, handleDownload } = useDownloadChat();
+
   return (
     <>
+      <h2 className="flex flex-col justify-center items-center truncate my-6 sm:mt-12 sm:mb-10">
+        <SplitText
+          text="Crea tu chat personalizado de Facebook"
+          className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-4xl md:w-[85%] lg:text-5xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
+          delay={20}
+          animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+          animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+          easing="easeOutCubic"
+          threshold={0.2}
+          rootMargin="-50px"
+        />
+      </h2>
       <main className="overflow-hidden flex flex-col justify-center items-center gap-6 min-[808px]:flex-row min-[808px]:gap-12 min-[808px]:px-4">
-        <div className="w-full h-full max-w-[440px] relative min-w-screen min-h-screen border border-[#363636]">
+        <div
+          className="w-full h-full max-w-[440px] relative min-w-screen min-h-screen bg-black sm:shadow-xl sm:shadow-blue-500"
+          ref={chatRef}
+        >
           {/* ChatContacto */}
           <section className="h-16 w-full flex justify-between items-center">
             <div className="h-full w-64 flex items-center gap-1">
@@ -287,182 +308,210 @@ export const FacebookChat: React.FC = () => {
         </div>
 
         {/* ChatSettings */}
-        <div className="border border-gray-800 rounded-sm p-6 h-full w-full max-w-[440px]">
-          <h3 className="text-xl text-center font-bold mb-4">
-            Configuración del chat
-          </h3>
-          <p>Elige quién envía el mensaje</p>
-          <section className="flex gap-4 mb-4 mt-1">
-            <label
-              className={`h-12 border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${
-                watch("sender") === "yo"
-                  ? "border-blue-500 border-4"
-                  : "border-[#555555]"
-              }`}
-            >
-              <input
-                type="radio"
-                value="yo"
-                {...register("sender")}
-                defaultChecked
-                className="cursor-pointer"
-              />
-              Yo
-            </label>
-            <label
-              className={`h-12 border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${
-                watch("sender") === "contacto"
-                  ? "border-blue-500 border-4"
-                  : "border-[#555555]"
-              }`}
-            >
-              <input
-                type="radio"
-                value="contacto"
-                {...register("sender")}
-                className="cursor-pointer"
-              />
-              Contacto
-            </label>
-          </section>
+        <div className="flex flex-col gap-6 justify-center items-center">
+          <div className="border border-gray-800 rounded-sm p-6 h-full w-full max-w-[440px]">
+            <h3 className="text-xl text-center font-bold mb-4">
+              Configuración del chat
+            </h3>
+            <p>Elige quién envía el mensaje</p>
+            <section className="flex gap-4 mb-4 mt-1">
+              <label
+                className={`h-12 border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${
+                  watch("sender") === "yo"
+                    ? "border-blue-500 border-4"
+                    : "border-[#555555]"
+                }`}
+              >
+                <input
+                  type="radio"
+                  value="yo"
+                  {...register("sender")}
+                  defaultChecked
+                  className="cursor-pointer"
+                />
+                Yo
+              </label>
+              <label
+                className={`h-12 border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${
+                  watch("sender") === "contacto"
+                    ? "border-blue-500 border-4"
+                    : "border-[#555555]"
+                }`}
+              >
+                <input
+                  type="radio"
+                  value="contacto"
+                  {...register("sender")}
+                  className="cursor-pointer"
+                />
+                Contacto
+              </label>
+            </section>
 
-          <section className="flex flex-col gap-4">
-            <article>
-              <label>Nombre del contacto</label>
-              <input
-                type="text"
-                className="w-full h-12 p-2 rounded-md border-2 my-1 border-[#555555] bg-[#121212]"
-                placeholder="Nombre del contacto"
-                maxLength={15}
-                {...register("contactName", {
-                  required: "El nombre es obligatorio",
-                  minLength: {
-                    value: 1,
-                    message: "1 carácter mínimo",
-                  },
-                  maxLength: {
-                    value: 15,
-                    message: "15 caracteres máximo",
-                  },
-                })}
-              />
-              <div className="text-sm flex gap-5">
-                <p
-                  className={
-                    contactName?.length >= 1 ? "text-green-500" : "text-red-500"
-                  }
-                >
-                  <span className="flex items-center gap-1">
-                    <FaCircleCheck />1 carácter mínimo
-                  </span>
-                </p>
-                <p
-                  className={
-                    contactName?.length <= 15 && contactName?.length != 0
-                      ? "text-green-500"
-                      : "text-red-500"
-                  }
-                >
-                  <span className="flex items-center gap-1">
-                    <FaCircleCheck />
-                    15 caracteres máximo
-                  </span>
-                </p>
-              </div>
-            </article>
-            <article>
-              <label>Estado de conexión</label>
-              <input
-                type="text"
-                className="w-full h-12 p-2 rounded-md border-2 border-[#555555] my-1 bg-[#121212]"
-                placeholder="Ej: Activo(a) ahora | Activo(a) hace 20 min"
-                maxLength={25}
-                {...register("contactStatus", {
-                  maxLength: {
-                    value: 25,
-                    message: "25 caracteres máximo ",
-                  },
-                })}
-              />
-              <div className="text-sm">
-                {contactStatus?.length <= 25 && contactStatus?.length > 0 ? (
-                  <p className="text-green-500">
+            <section className="flex flex-col gap-4">
+              <article>
+                <label>Nombre del contacto</label>
+                <input
+                  type="text"
+                  className="w-full h-12 p-2 rounded-md border-2 my-1 border-[#555555] bg-[#121212]"
+                  placeholder="Nombre del contacto"
+                  maxLength={15}
+                  {...register("contactName", {
+                    required: "El nombre es obligatorio",
+                    minLength: {
+                      value: 1,
+                      message: "1 carácter mínimo",
+                    },
+                    maxLength: {
+                      value: 15,
+                      message: "15 caracteres máximo",
+                    },
+                  })}
+                />
+                <div className="text-sm flex gap-5">
+                  <p
+                    className={
+                      contactName?.length >= 1
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }
+                  >
                     <span className="flex items-center gap-1">
-                      <FaCircleCheck />
-                      25 caracteres máximo
+                      <FaCircleCheck />1 carácter mínimo
                     </span>
                   </p>
-                ) : (
-                  <p className="text-green-500">
+                  <p
+                    className={
+                      contactName?.length <= 15 && contactName?.length != 0
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }
+                  >
                     <span className="flex items-center gap-1">
                       <FaCircleCheck />
-                      Ocultar conexión
+                      15 caracteres máximo
                     </span>
                   </p>
-                )}
-              </div>
-            </article>
-            <article>
-              <label>Foto de perfil</label>
-              <div className="flex items-center flex-col">
-                <label
-                  className={`cursor-pointer w-full h-12 text-lg flex justify-center items-center font-bold my-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 ${
-                    uploadStatus === "loading"
-                      ? "bg-gray-600"
-                      : "bg-blue-600 hover:bg-blue-700"
-                  }`}
-                >
-                  {uploadStatus === "loading" ? (
-                    <span>Subiendo...</span>
+                </div>
+              </article>
+              <article>
+                <label>Estado de conexión</label>
+                <input
+                  type="text"
+                  className="w-full h-12 p-2 rounded-md border-2 border-[#555555] my-1 bg-[#121212]"
+                  placeholder="Ej: Activo(a) ahora | Activo(a) hace 20 min"
+                  maxLength={25}
+                  {...register("contactStatus", {
+                    maxLength: {
+                      value: 25,
+                      message: "25 caracteres máximo ",
+                    },
+                  })}
+                />
+                <div className="text-sm">
+                  {contactStatus?.length <= 25 && contactStatus?.length > 0 ? (
+                    <p className="text-green-500">
+                      <span className="flex items-center gap-1">
+                        <FaCircleCheck />
+                        25 caracteres máximo
+                      </span>
+                    </p>
                   ) : (
-                    <span>Subir foto</span>
+                    <p className="text-green-500">
+                      <span className="flex items-center gap-1">
+                        <FaCircleCheck />
+                        Ocultar conexión
+                      </span>
+                    </p>
                   )}
+                </div>
+              </article>
+              <article>
+                <label>Foto de perfil</label>
+                <div className="flex items-center flex-col">
+                  <label
+                    className={`cursor-pointer w-full h-12 text-lg flex justify-center items-center font-bold my-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 ${
+                      uploadStatus === "loading"
+                        ? "bg-gray-600"
+                        : "bg-blue-600 hover:bg-blue-700"
+                    }`}
+                  >
+                    {uploadStatus === "loading" ? (
+                      <span>Subiendo...</span>
+                    ) : (
+                      <span>Subir foto</span>
+                    )}
 
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="hidden"
-                    disabled={uploadStatus === "loading"}
-                  />
-                </label>
-                {uploadStatus === "success" && (
-                  <div className="text-sm self-start">
-                    <p
-                      className={
-                        contactStatus?.length <= 25
-                          ? "text-green-500"
-                          : "text-red-500"
-                      }
-                    >
-                      <span className="flex items-center gap-1">
-                        <FaCircleCheck />
-                        Actualizada
-                      </span>
-                    </p>
-                  </div>
-                )}
-                {uploadStatus === "error" && uploadError && (
-                  <div className="text-sm self-start">
-                    <p
-                      className={
-                        contactStatus?.length <= 25
-                          ? "text-green-500"
-                          : "text-red-500"
-                      }
-                    >
-                      <span className="flex items-center gap-1">
-                        <FaCircleCheck />
-                        Error
-                      </span>
-                    </p>
-                  </div>
-                )}
-              </div>
-            </article>
-          </section>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className="hidden"
+                      disabled={uploadStatus === "loading"}
+                    />
+                  </label>
+                  {uploadStatus === "success" && (
+                    <div className="text-sm self-start">
+                      <p
+                        className={
+                          contactStatus?.length <= 25
+                            ? "text-green-500"
+                            : "text-red-500"
+                        }
+                      >
+                        <span className="flex items-center gap-1">
+                          <FaCircleCheck />
+                          Actualizada
+                        </span>
+                      </p>
+                    </div>
+                  )}
+                  {uploadStatus === "error" && uploadError && (
+                    <div className="text-sm self-start">
+                      <p
+                        className={
+                          contactStatus?.length <= 25
+                            ? "text-green-500"
+                            : "text-red-500"
+                        }
+                      >
+                        <span className="flex items-center gap-1">
+                          <FaCircleCheck />
+                          Error
+                        </span>
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </article>
+            </section>
+          </div>
+          <StarBorder
+            as="button"
+            className="custom-class sm:w-96 font-bold"
+            color="#0866fe"
+            speed="6s"
+            onClick={handleDownload}
+          >
+            Captura de pantalla
+          </StarBorder>
         </div>
       </main>
+      <section>
+        <h2 className="flex flex-col justify-center items-center truncate mt-16 mb-6">
+          <SplitText
+            text="Elige tu chat personalizado:"
+            className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
+            delay={20}
+            animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+            animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+            easing="easeOutCubic"
+            threshold={0.2}
+            rootMargin="-50px"
+          />
+        </h2>
+        <Cards />
+      </section>
     </>
   );
 };

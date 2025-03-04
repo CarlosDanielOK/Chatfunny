@@ -3,12 +3,15 @@ import { IChatMensajesProps } from "@/interfaces/types";
 export const ChatMensajes: React.FC<IChatMensajesProps> = ({ messages }) => {
   return (
     <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2">
-      {messages.map((msg) => {
+      {messages.map((msg, index) => {
         const isSenderMe = msg.sender === "yo";
+        const prevMessage = messages[index - 1];
+        const isSameSender = prevMessage && prevMessage.sender === msg.sender;
+
         return (
           <div
             key={msg.id}
-            className={`mt-2 flex ${
+            className={`${isSameSender ? "mt-0.5" : "mt-2"} flex ${
               isSenderMe ? "justify-end" : "justify-start"
             }`}
           >

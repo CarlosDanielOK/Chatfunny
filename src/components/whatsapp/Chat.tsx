@@ -10,6 +10,9 @@ import { ChatSettings } from "./ChatSettings";
 import { subirArchivo } from "@/api/subirArchivo";
 import { toPng } from "html-to-image";
 import { StarBorder } from "../animations/StarBorder";
+import { useDownloadChat } from "@/hooks/useDownloadChat";
+import { SplitText } from "../animations/SplitText";
+import { Cards } from "../Cards";
 
 export const WhatsAppChat: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -35,7 +38,7 @@ export const WhatsAppChat: React.FC = () => {
   >("idle");
   const [uploadError, setUploadError] = useState<string | null>(null);
 
-  const chatRef = useRef<HTMLDivElement>(null);
+  const { chatRef, handleDownload } = useDownloadChat();
 
   const onSubmit = (data: IFormValues) => {
     if (data.message.trim() === "") return;
@@ -62,22 +65,24 @@ export const WhatsAppChat: React.FC = () => {
     }
   };
 
-  const handleDownload = async () => {
-    if (chatRef.current) {
-      const dataUrl = await toPng(chatRef.current);
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "chat.png";
-      link.click();
-    }
-  };
-
   return (
     <>
+      <h2 className="flex flex-col justify-center items-center truncate my-6 sm:mt-12 sm:mb-10">
+        <SplitText
+          text="Crea tu chat personalizado de WhatsApp"
+          className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-4xl md:w-[85%] lg:text-5xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
+          delay={20}
+          animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+          animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+          easing="easeOutCubic"
+          threshold={0.2}
+          rootMargin="-50px"
+        />
+      </h2>
       <main className="overflow-hidden flex flex-col justify-center items-center gap-6 min-[808px]:flex-row min-[808px]:gap-12 min-[808px]:px-4">
         <div
           ref={chatRef}
-          className="w-full h-full max-w-[440px] relative min-w-screen min-h-screen bg-[url(/fondochat.png)] bg-contain bg-center"
+          className="w-full h-full max-w-[440px] relative min-w-screen min-h-screen bg-[url(/fondochat.png)] bg-contain bg-center sm:shadow-xl sm:shadow-blue-500"
         >
           <ChatContacto
             contactPhoto={contactPhoto}
@@ -107,8 +112,8 @@ export const WhatsAppChat: React.FC = () => {
           />
           <StarBorder
             as="button"
-            className="custom-class"
-            color="rgb(230, 0, 35)"
+            className="custom-class sm:w-96 font-bold"
+            color="#3fe25d"
             speed="6s"
             onClick={handleDownload}
           >
@@ -116,6 +121,21 @@ export const WhatsAppChat: React.FC = () => {
           </StarBorder>
         </div>
       </main>
+      <section>
+        <h2 className="flex flex-col justify-center items-center truncate mt-16 mb-6">
+          <SplitText
+            text="Elige tu chat personalizado:"
+            className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
+            delay={20}
+            animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+            animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+            easing="easeOutCubic"
+            threshold={0.2}
+            rootMargin="-50px"
+          />
+        </h2>
+        <Cards />
+      </section>
     </>
   );
 };

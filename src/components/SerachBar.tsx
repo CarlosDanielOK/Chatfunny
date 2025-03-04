@@ -11,7 +11,7 @@ const searchItems = [
   { name: "Instagram", link: "/instagram" },
   { name: "Facebook", link: "/facebook" },
   { name: "Messenger", link: "/messenger" },
-  { name: "TikTok", link: "/tiktok" },
+  // { name: "TikTok", link: "/tiktok" },
 ];
 
 export const SearchBar: React.FC<SearchBarProps> = ({
