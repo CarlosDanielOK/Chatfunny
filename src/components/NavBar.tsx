@@ -11,14 +11,20 @@ export const NavBar = () => {
   const [searchActive, setSearchActive] = useState(false);
 
   return (
-    <header className="flex shadow-white text-white h-14 items-center justify-between px-2 relative">
+    <header className="flex shadow-white text-white h-14 items-center justify-between px-2 relative my-0.5">
       {/* Logo y título */}
-      <section className="flex items-center gap-1 w-36">
-        <Link href="/" className="w-12 h-12">
-          <Image src="/logo.png" width={479} height={480} alt="Logo" />
+      <section className="flex items-center gap-2 w-36">
+        <Link href="/" className="w-11 h-11">
+          <Image
+            src="/logo.png"
+            width={480}
+            height={480}
+            alt="Logo"
+            className="rounded-xl"
+          />
         </Link>
         <Link href="/">
-          <h1 className="font-bold">Chat Store</h1>
+          <h1 className="font-bold">Crush</h1>
         </Link>
       </section>
 
@@ -47,20 +53,22 @@ export const NavBar = () => {
       </nav>
 
       {/* Sobre mi */}
-      <StarBorder
-        as="button"
-        className="custom-class"
-        color="rgb(230, 0, 35)"
-        speed="6s"
-        onClick={() => {
-          const section = document.getElementById("cards-section");
-          if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-          }
-        }}
-      >
-        Crear chat
-      </StarBorder>
+      <div className="hidden sm:block">
+        <StarBorder
+          as="button"
+          className="custom-class"
+          color="rgb(230, 0, 35)"
+          speed="6s"
+          onClick={() => {
+            const section = document.getElementById("cards-section");
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
+          Crear chat
+        </StarBorder>
+      </div>
 
       {/* Menú de navegación y botón de búsqueda para dispositivos móviles */}
       <section className="flex items-center justify-center gap-3 sm:hidden">

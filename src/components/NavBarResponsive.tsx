@@ -22,7 +22,7 @@ export const NavBarResponsive: React.FC = () => {
           width={400}
           height={400}
           alt="foto de perfil"
-          className="h-12 w-12 rounded-full object-cover aspect-square"
+          className="h-11 w-11 rounded-full object-cover aspect-square"
         />
       </button>
 

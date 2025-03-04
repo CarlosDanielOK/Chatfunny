@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { GoArrowUpRight } from "react-icons/go";
 import { FaInstagram } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
 
