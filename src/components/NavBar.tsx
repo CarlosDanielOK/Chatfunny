@@ -24,7 +24,7 @@ export const NavBar = () => {
           />
         </Link>
         <Link href="/">
-          <h1 className="font-bold">Crush</h1>
+          <h1 className="font-bold">Chatfunny</h1>
         </Link>
       </section>
 

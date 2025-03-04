@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CrushChat",
+  title: "Chatfunny",
   description:
-    "Crea chats ficticios de WhatsApp, Instagram, Facebook, Messenger y compártelos en tus redes sociales.",
+    "Crea chats ficticios de WhatsApp, Instagram, Facebook, Messenger, y compártelos en tus redes sociales.",
 };
 
 export default function RootLayout({
@@ -27,6 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
