@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IFormValues, IMessage } from "@/interfaces/types";
 import { ChatContacto } from "./ChatContacto";
@@ -8,7 +8,6 @@ import { ChatMensajes } from "./ChatMensajes";
 import { ChatForm } from "./ChatForm";
 import { ChatSettings } from "./ChatSettings";
 import { subirArchivo } from "@/api/subirArchivo";
-import { toPng } from "html-to-image";
 import { StarBorder } from "../animations/StarBorder";
 import { useDownloadChat } from "@/hooks/useDownloadChat";
 import { SplitText } from "../animations/SplitText";
