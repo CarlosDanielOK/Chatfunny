@@ -57,7 +57,7 @@ export const Presentacion = () => {
       <section>
         <h2 className="flex justify-center items-center truncate mt-10 md:mt-16">
           <SplitText
-            text="Fiel al diseño original para que sea creíble"
+            text="Fiel al diseño original de las aplicaciones para que sea creíble"
             className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
             delay={20}
             animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
