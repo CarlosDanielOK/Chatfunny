@@ -114,8 +114,7 @@ export const Presentacion = () => {
             <div className="w-[90vw] my-4 md:w-[50%] sm:flex sm:justify-center sm:px-4 sm:items-center">
               <p className="sm:max-w-96 md:text-lg">
                 Escribe <span className="font-bold">!foto</span> para enviar una
-                foto solo para verse una vez. Y usa los emojis incluidos en el
-                teclado de tu celular para más realismo.
+                foto solo para verse una vez. Y envía los emojis incluidos en tu celular para más realismo.
               </p>
             </div>
             <div className="w-[90vw] md:w-[50%] flex justify-center items-center flex-col gap-6">
