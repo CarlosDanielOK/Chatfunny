@@ -30,7 +30,7 @@ export const ChatContacto: React.FC<IChatContactoProps> = ({
           </p>
         </article>
       </div>
-      <div className="h-full flex items-center gap-4">
+      <div className="h-full flex items-center gap-5">
         <BiVideo className="h-6 w-6" />
         <MdOutlineCall className="h-6 w-6" />
         <BsThreeDotsVertical className="h-6 w-6" />

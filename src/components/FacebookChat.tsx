@@ -43,6 +43,14 @@ export const FacebookChat: React.FC = () => {
 
   const onSubmit = (data: IFormValues) => {
     if (data.message.trim() === "") return;
+
+    let isFoto = false;
+
+    if (data.message === "!foto") {
+      data.message = "Foto";
+      isFoto = true;
+    }
+
     const newMsg: IMessage = {
       id: Date.now(),
       text: data.message,
@@ -52,6 +60,7 @@ export const FacebookChat: React.FC = () => {
         minute: "2-digit",
         hour12: false,
       }),
+      isFoto,
     };
     setMessages((prev) => [...prev, newMsg]);
     resetField("message");
@@ -109,7 +118,7 @@ export const FacebookChat: React.FC = () => {
     <>
       <h2 className="flex flex-col justify-center items-center truncate my-6 sm:mt-12 sm:mb-10">
         <SplitText
-          text="Crea tu chat personalizado de Facebook"
+          text="Crea un chat ficticio de Facebook"
           className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-4xl md:w-[85%] lg:text-5xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
           delay={20}
           animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
@@ -140,7 +149,7 @@ export const FacebookChat: React.FC = () => {
                   (contactStatus === "Activo(a) ahora" ||
                     contactStatus === "Active now" ||
                     contactStatus === "Online") && (
-                    <span className="h-3 w-3 border border-black bg-[#1cd14f] rounded-full absolute bottom-0 right-0"></span>
+                    <span className="h-3 w-3 border border-black bg-[#31a63b] rounded-full absolute bottom-0 right-0"></span>
                   )}
               </div>
 
@@ -189,12 +198,31 @@ export const FacebookChat: React.FC = () => {
                     className={`flex justify-end ${marginClass}`}
                   >
                     <div
-                      className={`px-3 py-2 flex max-w-[80%] bg-[#5653f8] ${getRoundedClasses(
+                      className={`px-3 py-2 flex max-w-[80%] bg-[#4c71fe] ${getRoundedClasses(
                         index,
                         messages
                       )}`}
                     >
-                      <p className="w-full break-words">{msg.text}</p>
+                      <p
+                        className={`w-full break-words ${
+                          msg.isFoto &&
+                          "text-[#f9fdff] flex items-center gap-1.5"
+                        }`}
+                      >
+                        {msg.isFoto && (
+                          <svg
+                            viewBox="6 6 24 24"
+                            fill="currentColor"
+                            width="20"
+                            height="20"
+                            aria-hidden="true"
+                          >
+                            <path d="M7 18c0-6.075 4.925-11 11-11a1.25 1.25 0 1 1 0 2.5 8.5 8.5 0 0 0 0 17 1.25 1.25 0 1 1 0 2.5c-6.075 0-11-4.925-11-11zM22.25 10.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM27.5 12.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM27.75 19.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM27.5 23.25a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM22.25 28a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"></path>
+                            <path d="M19.448 13.134c.34.19.552.548.552.937v7.858a1.071 1.071 0 0 1-2.143 0v-5.667a.143.143 0 0 0-.218-.12l-1 .624a1.071 1.071 0 1 1-1.135-1.817l2.857-1.786c.33-.207.746-.218 1.087-.029z"></path>
+                          </svg>
+                        )}
+                        {msg.text}
+                      </p>
                     </div>
                   </div>
                 );
@@ -225,9 +253,28 @@ export const FacebookChat: React.FC = () => {
                       )}
                     </div>
                     <div
-                      className={`px-3 py-2 flex max-w-[85%] bg-[#1f272a] ${roundedClasses}`}
+                      className={`px-3 py-2 flex max-w-[85%] bg-[#333333] ${roundedClasses}`}
                     >
-                      <p className="w-full break-words">{msg.text}</p>
+                      <p
+                        className={`w-full break-words ${
+                          msg.isFoto &&
+                          "text-[#f9f9f9] flex items-center gap-1.5"
+                        }`}
+                      >
+                        {msg.isFoto && (
+                          <svg
+                            viewBox="6 6 24 24"
+                            fill="currentColor"
+                            width="20"
+                            height="20"
+                            aria-hidden="true"
+                          >
+                            <path d="M7 18c0-6.075 4.925-11 11-11a1.25 1.25 0 1 1 0 2.5 8.5 8.5 0 0 0 0 17 1.25 1.25 0 1 1 0 2.5c-6.075 0-11-4.925-11-11zM22.25 10.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM27.5 12.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM27.75 19.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM27.5 23.25a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM22.25 28a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"></path>
+                            <path d="M19.448 13.134c.34.19.552.548.552.937v7.858a1.071 1.071 0 0 1-2.143 0v-5.667a.143.143 0 0 0-.218-.12l-1 .624a1.071 1.071 0 1 1-1.135-1.817l2.857-1.786c.33-.207.746-.218 1.087-.029z"></path>
+                          </svg>
+                        )}
+                        {msg.text}
+                      </p>
                     </div>
                   </div>
                 );

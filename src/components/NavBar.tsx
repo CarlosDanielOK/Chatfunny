@@ -42,7 +42,7 @@ export const NavBar = () => {
           Facebook
           <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform"></span>
         </Link>
-        <Link href="/facebook" className="relative group hidden md:block">
+        <Link href="/messenger" className="relative group hidden md:block">
           Messenger
           <span className="absolute left-0 bottom-0 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform"></span>
         </Link>

@@ -2,6 +2,7 @@ import { IChatFormProps } from "@/interfaces/types";
 import React from "react";
 import { IoAttach } from "react-icons/io5";
 import { MdOutlineCameraAlt } from "react-icons/md";
+import notificacion from "../Notificacion";
 
 export const ChatForm: React.FC<IChatFormProps> = ({
   onSubmit,
@@ -16,7 +17,15 @@ export const ChatForm: React.FC<IChatFormProps> = ({
         className="w-full flex items-center gap-2"
       >
         <article className="bg-[#1f272a] h-12 ml-0.5 flex items-center rounded-full px-3 w-full max-w-[85%] min-w-[150px]">
-          <svg viewBox="0 0 24 24" height="24" width="24" fill="none">
+          <svg
+            viewBox="0 0 24 24"
+            height="24"
+            width="24"
+            fill="none"
+            onClick={() =>
+              notificacion("No disponible. Usa los emojis de tu celular.")
+            }
+          >
             <path
               d="M8.5 10.25c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zM17 8.75c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5.67-1.5 1.5-1.5 1.5.67 1.5 1.5z"
               fill="#8d9598"
@@ -34,15 +43,37 @@ export const ChatForm: React.FC<IChatFormProps> = ({
             className="flex-1 text-lg bg-transparent text-white px-2 py-2 outline-none min-w-0"
             {...register("message")}
           />
-          <IoAttach className="w-6 h-6 min-w-6 mr-2 text-gray-400" />
-          <MdOutlineCameraAlt className="w-6 h-6 min-w-6 text-gray-400" />
+          <IoAttach
+            className="w-6 h-6 min-w-6 mr-2 text-gray-400"
+            onClick={() =>
+              notificacion(
+                "Escribe el comando !foto para enviar una foto solo para verse una vez."
+              )
+            }
+          />
+          <MdOutlineCameraAlt
+            className="w-6 h-6 min-w-6 text-gray-400"
+            onClick={() =>
+              notificacion(
+                "Escribe el comando !foto para enviar una foto solo para verse una vez."
+              )
+            }
+          />
         </article>
         <button
           type="submit"
           className="bg-[#21c063] w-12 h-12 min-w-[48px] min-h-[48px] rounded-full flex items-center justify-center"
         >
           {messageValue.trim() === "" ? (
-            <svg viewBox="0 0 24 24" height="24" width="24" fill="black">
+            <svg
+              viewBox="0 0 24 24"
+              height="24"
+              width="24"
+              fill="black"
+              onClick={() =>
+                notificacion("Funcionalidad en desarrollo. Escribe texto.")
+              }
+            >
               <path d="M12 14.942c2 0 3.531-1.53 3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531S8.469 2.35 8.469 4.35v7.061c0 2.001 1.53 3.531 3.531 3.531zM18.237 11.412c0 3.531-2.942 6.002-6.237 6.002s-6.237-2.471-6.237-6.002H3.761c0 4.001 3.178 7.297 7.061 7.885v3.884h2.354v-3.884c3.884-0.588 7.061-3.884 7.061-7.885h-1.999z" />
             </svg>
           ) : (

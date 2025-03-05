@@ -19,7 +19,7 @@ export const Cards = () => {
           className="w-12 h-12 rounded-md"
         />
         <h2 className="text-xl font-bold">WhatsApp</h2>
-        <p className="text-center">Crea un chat personalizado para WhatsApp.</p>
+        <p className="text-center">Crea un chat ficticio para WhatsApp.</p>
         <Link href="/whatsapp">
           <StarBorder
             as="button"
@@ -45,7 +45,7 @@ export const Cards = () => {
         />
         <h2 className="text-xl font-bold">Instagram</h2>
         <p className="text-center">
-          Crea un chat personalizado para Instagram.
+          Crea un chat ficticio para Instagram.
         </p>
         <Link href="/instagram">
           <StarBorder
@@ -71,7 +71,7 @@ export const Cards = () => {
           className="w-12 h-12 rounded-md"
         />
         <h2 className="text-xl font-bold">Facebook</h2>
-        <p className="text-center">Crea un chat personalizado para Facebook.</p>
+        <p className="text-center">Crea un chat ficticio para Facebook.</p>
         <Link href="/facebook">
           <StarBorder
             as="button"
@@ -96,7 +96,7 @@ export const Cards = () => {
           className="w-12 h-12 rounded-md"
         />
         <h2 className="text-xl font-bold">Messenger</h2>
-        <p className="text-center">Crea un chat personalizado para Messenger.</p>
+        <p className="text-center">Crea un chat ficticio para Messenger.</p>
         <Link href="/facebook">
           <StarBorder
             as="button"

@@ -5,6 +5,7 @@ export interface IMessage {
   text: string;
   sender: "yo" | "contacto";
   time: string;
+  isFoto?: boolean;
 }
 
 export interface IFormValues {

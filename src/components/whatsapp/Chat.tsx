@@ -41,6 +41,14 @@ export const WhatsAppChat: React.FC = () => {
 
   const onSubmit = (data: IFormValues) => {
     if (data.message.trim() === "") return;
+
+    let isFoto = false;
+
+    if (data.message === "!foto") {
+      data.message = "Abierto";
+      isFoto = true;
+    }
+
     const newMsg: IMessage = {
       id: Date.now(),
       text: data.message,
@@ -50,6 +58,7 @@ export const WhatsAppChat: React.FC = () => {
         minute: "2-digit",
         hour12: false,
       }),
+      isFoto,
     };
     setMessages((prev) => [...prev, newMsg]);
     resetField("message");
@@ -68,7 +77,7 @@ export const WhatsAppChat: React.FC = () => {
     <>
       <h2 className="flex flex-col justify-center items-center truncate my-6 sm:mt-12 sm:mb-10">
         <SplitText
-          text="Crea tu chat personalizado de WhatsApp"
+          text="Crea un chat ficticio de WhatsApp"
           className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-4xl md:w-[85%] lg:text-5xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
           delay={20}
           animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}

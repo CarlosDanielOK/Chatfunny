@@ -42,6 +42,14 @@ export const InstagramChat: React.FC = () => {
 
   const onSubmit = (data: IFormValues) => {
     if (data.message.trim() === "") return;
+
+    let isFoto = false;
+
+    if (data.message === "!foto") {
+      data.message = "Foto";
+      isFoto = true;
+    }
+
     const newMsg: IMessage = {
       id: Date.now(),
       text: data.message,
@@ -51,6 +59,7 @@ export const InstagramChat: React.FC = () => {
         minute: "2-digit",
         hour12: false,
       }),
+      isFoto,
     };
     setMessages((prev) => [...prev, newMsg]);
     resetField("message");
@@ -108,7 +117,7 @@ export const InstagramChat: React.FC = () => {
     <>
       <h2 className="flex flex-col justify-center items-center truncate my-6 sm:mt-12 sm:mb-10">
         <SplitText
-          text="Crea tu chat personalizado de Instagram"
+          text="Crea un chat ficticio de Instagram"
           className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-4xl md:w-[85%] lg:text-5xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
           delay={20}
           animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
@@ -216,7 +225,26 @@ export const InstagramChat: React.FC = () => {
                         messages
                       )}`}
                     >
-                      <p className="w-full break-words">{msg.text}</p>
+                      <p
+                        className={`w-full break-words ${
+                          msg.isFoto &&
+                          "text-[#cec9ff] flex items-center gap-1.5"
+                        }`}
+                      >
+                        {msg.isFoto && (
+                          <svg
+                            fill="currentColor"
+                            height="16"
+                            role="img"
+                            viewBox="0 0 24 24"
+                            width="16"
+                          >
+                            <polygon points="13.25 17 13.25 7 10.919 7 8.199 8.96 8.199 11.414 10.75 9.717 10.75 17 13.25 17"></polygon>
+                            <path d="M2.97 12.137a1.5 1.5 0 0 0-1.5-1.482h-.02a1.5 1.5 0 0 0-1.48 1.519 11.96 11.96 0 0 0 .914 4.45 1.5 1.5 0 0 0 2.771-1.15 8.955 8.955 0 0 1-.685-3.337Zm8.02-9.064a9.066 9.066 0 0 1 3.4.279 1.5 1.5 0 0 0 .803-2.89A12.081 12.081 0 0 0 10.665.09a1.5 1.5 0 0 0-1.33 1.653 1.492 1.492 0 0 0 1.654 1.33Zm7.836 3.115a11.434 11.434 0 0 1 1.375 2.252 1.499 1.499 0 1 0 2.73-1.242 14.533 14.533 0 0 0-1.769-2.891c-.249-.297-.51-.58-.78-.845A1.5 1.5 0 0 0 18.278 5.6c.202.199.399.41.548.587ZM6.188 5.122c.194-.163.394-.317.598-.46A1.5 1.5 0 0 0 5.06 2.207a11.964 11.964 0 0 0-3.67 4.144A1.498 1.498 0 0 0 2.708 8.56c.534 0 1.052-.287 1.322-.791a8.987 8.987 0 0 1 2.157-2.648ZM9.4 20.682c-1.056-.335-2.069-.886-3.008-1.64a1.5 1.5 0 1 0-1.877 2.34c1.23.986 2.569 1.713 3.98 2.159a1.5 1.5 0 0 0 .904-2.86Zm13.213-9.196c-.811-.089-1.554.53-1.63 1.356A8.502 8.502 0 0 1 20 16.075a1.499 1.499 0 1 0 2.646 1.412 11.48 11.48 0 0 0 1.322-4.37 1.499 1.499 0 0 0-1.356-1.63Zm-5.649 7.96a9.284 9.284 0 0 1-3.129 1.394 1.5 1.5 0 1 0 .686 2.92 12.256 12.256 0 0 0 4.14-1.84 1.5 1.5 0 0 0-1.697-2.474Z"></path>
+                          </svg>
+                        )}
+                        {msg.text}
+                      </p>
                     </div>
                   </div>
                 );
@@ -249,7 +277,26 @@ export const InstagramChat: React.FC = () => {
                     <div
                       className={`px-3 py-2 flex max-w-[85%] bg-[#1f272a] ${roundedClasses}`}
                     >
-                      <p className="w-full break-words">{msg.text}</p>
+                      <p
+                        className={`w-full break-words ${
+                          msg.isFoto &&
+                          "text-[#989898] flex items-center gap-1.5"
+                        }`}
+                      >
+                        {msg.isFoto && (
+                          <svg
+                            fill="currentColor"
+                            height="16"
+                            role="img"
+                            viewBox="0 0 24 24"
+                            width="16"
+                          >
+                            <polygon points="13.25 17 13.25 7 10.919 7 8.199 8.96 8.199 11.414 10.75 9.717 10.75 17 13.25 17"></polygon>
+                            <path d="M2.97 12.137a1.5 1.5 0 0 0-1.5-1.482h-.02a1.5 1.5 0 0 0-1.48 1.519 11.96 11.96 0 0 0 .914 4.45 1.5 1.5 0 0 0 2.771-1.15 8.955 8.955 0 0 1-.685-3.337Zm8.02-9.064a9.066 9.066 0 0 1 3.4.279 1.5 1.5 0 0 0 .803-2.89A12.081 12.081 0 0 0 10.665.09a1.5 1.5 0 0 0-1.33 1.653 1.492 1.492 0 0 0 1.654 1.33Zm7.836 3.115a11.434 11.434 0 0 1 1.375 2.252 1.499 1.499 0 1 0 2.73-1.242 14.533 14.533 0 0 0-1.769-2.891c-.249-.297-.51-.58-.78-.845A1.5 1.5 0 0 0 18.278 5.6c.202.199.399.41.548.587ZM6.188 5.122c.194-.163.394-.317.598-.46A1.5 1.5 0 0 0 5.06 2.207a11.964 11.964 0 0 0-3.67 4.144A1.498 1.498 0 0 0 2.708 8.56c.534 0 1.052-.287 1.322-.791a8.987 8.987 0 0 1 2.157-2.648ZM9.4 20.682c-1.056-.335-2.069-.886-3.008-1.64a1.5 1.5 0 1 0-1.877 2.34c1.23.986 2.569 1.713 3.98 2.159a1.5 1.5 0 0 0 .904-2.86Zm13.213-9.196c-.811-.089-1.554.53-1.63 1.356A8.502 8.502 0 0 1 20 16.075a1.499 1.499 0 1 0 2.646 1.412 11.48 11.48 0 0 0 1.322-4.37 1.499 1.499 0 0 0-1.356-1.63Zm-5.649 7.96a9.284 9.284 0 0 1-3.129 1.394 1.5 1.5 0 1 0 .686 2.92 12.256 12.256 0 0 0 4.14-1.84 1.5 1.5 0 0 0-1.697-2.474Z"></path>
+                          </svg>
+                        )}
+                        {msg.text}
+                      </p>
                     </div>
                   </div>
                 );
