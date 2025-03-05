@@ -53,8 +53,99 @@ export const Presentacion = () => {
         </h2>
         <Cards />
       </section>
+
       <section>
         <h2 className="flex justify-center items-center truncate mt-10 md:mt-16">
+          <SplitText
+            text="Fiel al diseño original para que sea creíble"
+            className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
+            delay={20}
+            animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+            animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+            easing="easeOutCubic"
+            threshold={0.2}
+            rootMargin="-50px"
+          />
+        </h2>
+        <article className="flex flex-col sm:flex-row justify-center items-center">
+          <div className="sm:w-[90vw] md:w-[80vw] lg:w-[60vw] flex flex-col sm:flex-row justify-center items-center my-4">
+            <div className="w-[90vw] md:w-[50%] flex justify-center items-center gap-6 flex-wrap">
+              <Image
+                src="/whatsappui.jpg"
+                width={400}
+                height={400}
+                alt="WhatsApp UI"
+                className="w-72 shadow-md shadow-red-500 rounded-lg"
+              ></Image>
+              <Image
+                src="/instagramui.jpg"
+                width={400}
+                height={400}
+                alt="Instagram UI"
+                className="w-72 shadow-md shadow-red-500 rounded-lg"
+              ></Image>
+              <Image
+                src="/facebookui.jpg"
+                width={400}
+                height={400}
+                alt="Facebook UI"
+                className="w-72 shadow-md shadow-red-500 rounded-lg"
+              ></Image>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <h2 className="flex justify-center items-center truncate mt-10">
+          <SplitText
+            text="Envía mensajes de texto, emojis y fotos"
+            className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
+            delay={20}
+            animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+            animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+            easing="easeOutCubic"
+            threshold={0.2}
+            rootMargin="-50px"
+          />
+        </h2>
+        <article className="flex flex-col sm:flex-row justify-center items-center">
+          <div className="sm:w-[90vw] md:w-[80vw] lg:w-[60vw] flex flex-col sm:flex-row justify-center items-center sm:my-4">
+            <div className="w-[90vw] my-4 md:w-[50%] sm:flex sm:justify-center sm:px-4 sm:items-center">
+              <p className="sm:max-w-96 md:text-lg">
+                Escribe <span className="font-bold">!foto</span> para enviar una
+                foto solo para verse una vez. Y usa los emojis incluidos en el
+                teclado de tu celular para más realismo.
+              </p>
+            </div>
+            <div className="w-[90vw] md:w-[50%] flex justify-center items-center flex-col gap-6">
+              <Image
+                src="/whatsappmsj.jpg"
+                width={400}
+                height={400}
+                alt="WhatsApp fotos"
+                className="w-72 shadow-md shadow-red-500 rounded-lg"
+              ></Image>
+              <Image
+                src="/instagrammsj.jpg"
+                width={400}
+                height={400}
+                alt="Instagram fotos"
+                className="w-72 shadow-md shadow-red-500 rounded-lg"
+              ></Image>
+              <Image
+                src="/facebookmsj.jpg"
+                width={400}
+                height={400}
+                alt="Facebook fotos"
+                className="w-72 shadow-md shadow-red-500 rounded-lg"
+              ></Image>
+            </div>
+          </div>
+        </article>
+      </section>
+      <section>
+        <h2 className="flex justify-center items-center truncate mt-10">
           <SplitText
             text="Configurar el chat"
             className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
@@ -91,7 +182,7 @@ export const Presentacion = () => {
                 width={400}
                 height={400}
                 alt="Configuración del chat"
-                className="w-72 shadow-lg shadow-red-500 rounded-lg"
+                className="w-72 shadow-md shadow-red-500 rounded-lg"
               ></Image>
             </div>
           </div>
@@ -131,26 +222,14 @@ export const Presentacion = () => {
                 width={400}
                 height={400}
                 alt="Captura de pantalla de un chat"
-                className="w-72 shadow-lg shadow-red-500 rounded-lg"
+                className="w-72 shadow-md shadow-red-500 rounded-lg"
               ></Image>
             </div>
           </div>
         </article>
       </section>
-      <section>
-        <h2 className="flex flex-col justify-center items-center truncate mt-10">
-          <SplitText
-            text="Fiel al diseño original de las aplicaciones."
-            className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
-            delay={20}
-            animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
-            animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            easing="easeOutCubic"
-            threshold={0.2}
-            rootMargin="-50px"
-          />
-          <ScrollButton targetId="cards-section" buttonText="Crear ahora" />
-        </h2>
+      <section className="flex justify-center items-center mt-10">
+        <ScrollButton targetId="cards-section" buttonText="Crear ahora" />
       </section>
     </main>
   );
