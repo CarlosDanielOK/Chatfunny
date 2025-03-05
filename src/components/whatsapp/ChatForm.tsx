@@ -23,7 +23,7 @@ export const ChatForm: React.FC<IChatFormProps> = ({
             width="24"
             fill="none"
             onClick={() =>
-              notificacion("No disponible. Usa los emojis de tu celular.")
+              notificacion("Usa los emojis del teclado de tu celular.")
             }
           >
             <path
@@ -47,7 +47,7 @@ export const ChatForm: React.FC<IChatFormProps> = ({
             className="w-6 h-6 min-w-6 mr-2 text-gray-400"
             onClick={() =>
               notificacion(
-                "Escribe el comando !foto para enviar una foto solo para verse una vez."
+                "Escribe !foto para enviar una foto solo para verse una vez."
               )
             }
           />
@@ -55,7 +55,7 @@ export const ChatForm: React.FC<IChatFormProps> = ({
             className="w-6 h-6 min-w-6 text-gray-400"
             onClick={() =>
               notificacion(
-                "Escribe el comando !foto para enviar una foto solo para verse una vez."
+                "Escribe !foto para enviar una foto solo para verse una vez."
               )
             }
           />

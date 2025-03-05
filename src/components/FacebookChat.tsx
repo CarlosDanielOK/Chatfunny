@@ -16,9 +16,12 @@ import { SplitText } from "./animations/SplitText";
 import { Cards } from "./Cards";
 import { useDownloadChat } from "@/hooks/useDownloadChat";
 import { StarBorder } from "./animations/StarBorder";
+import notificacion from "./Notificacion";
+import { IoIosArrowForward } from "react-icons/io";
 
 export const FacebookChat: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [isCapturing, setIsCapturing] = useState(false);
   const { register, handleSubmit, watch, resetField, setValue } =
     useForm<IFormValues>({
       defaultValues: {
@@ -113,21 +116,14 @@ export const FacebookChat: React.FC = () => {
   };
 
   const { chatRef, handleDownload } = useDownloadChat();
+  const handleScreenshot = async () => {
+    setIsCapturing(true);
+    await handleDownload();
+    setIsCapturing(false);
+  };
 
   return (
     <>
-      <h2 className="flex flex-col justify-center items-center truncate my-6 sm:mt-12 sm:mb-10">
-        <SplitText
-          text="Crea un chat ficticio de Facebook"
-          className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-4xl md:w-[85%] lg:text-5xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
-          delay={20}
-          animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
-          animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-          easing="easeOutCubic"
-          threshold={0.2}
-          rootMargin="-50px"
-        />
-      </h2>
       <main className="overflow-hidden flex flex-col justify-center items-center gap-6 min-[808px]:flex-row min-[808px]:gap-12 min-[808px]:px-4">
         <div
           className="w-full h-full max-w-[440px] relative min-w-screen min-h-screen bg-black sm:shadow-xl sm:shadow-blue-500"
@@ -184,7 +180,7 @@ export const FacebookChat: React.FC = () => {
           </section>
 
           {/* ChatMensajes */}
-          <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2">
+          <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2 scrollbar-hide">
             {messages.map((msg, index) => {
               const isSenderMe = msg.sender === "yo";
               const prevMsg = messages[index - 1];
@@ -283,22 +279,63 @@ export const FacebookChat: React.FC = () => {
           </section>
 
           {/* ChatForm */}
-          <section className="h-16 w-full absolute bottom-0 flex flex-col items-center justify-center gap-1 px-2">
+          <section className="h-16 w-full absolute bottom-0 flex flex-col items-center justify-center gap-1 px-2 cursor-pointer">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="w-full flex items-center gap-2"
             >
-              <article className="flex h-12 items-center justify-center gap-4">
-                <svg height="24px" viewBox="0 0 24 24" width="24px">
-                  <path
-                    d="m18,11l-5,0l0,-5c0,-0.552 -0.448,-1 -1,-1c-0.5525,0 -1,0.448 -1,1l0,5l-5,0c-0.5525,0 -1,0.448 -1,1c0,0.552 0.4475,1 1,1l5,0l0,5c0,0.552 0.4475,1 1,1c0.552,0 1,-0.448 1,-1l0,-5l5,0c0.552,0 1,-0.448 1,-1c0,-0.552 -0.448,-1 -1,-1m-6,13c-6.6275,0 -12,-5.3725 -12,-12c0,-6.6275 5.3725,-12 12,-12c6.627,0 12,5.3725 12,12c0,6.6275 -5.373,12 -12,12"
-                    fill="#5271ff"
-                  ></path>
-                </svg>
-                <FaCamera className="hidden min-[368px]:block h-6 w-6 text-[#5271ff]" />
-                <FaRegImage className="hidden min-[368px]:block h-6 w-6 text-[#5271ff]" />
-                <FaMicrophone className="hidden min-[368px]:block h-6 w-6 text-[#5271ff]" />
-              </article>
+              {messageValue.trim() === "" ? (
+                <article className="flex h-12 items-center justify-center gap-4">
+                  <svg
+                    height="24px"
+                    viewBox="0 0 24 24"
+                    width="24px"
+                    onClick={() =>
+                      notificacion(
+                        "Escribe !foto para enviar una foto solo para verse una vez."
+                      )
+                    }
+                  >
+                    <path
+                      d="m18,11l-5,0l0,-5c0,-0.552 -0.448,-1 -1,-1c-0.5525,0 -1,0.448 -1,1l0,5l-5,0c-0.5525,0 -1,0.448 -1,1c0,0.552 0.4475,1 1,1l5,0l0,5c0,0.552 0.4475,1 1,1c0.552,0 1,-0.448 1,-1l0,-5l5,0c0.552,0 1,-0.448 1,-1c0,-0.552 -0.448,-1 -1,-1m-6,13c-6.6275,0 -12,-5.3725 -12,-12c0,-6.6275 5.3725,-12 12,-12c6.627,0 12,5.3725 12,12c0,6.6275 -5.373,12 -12,12"
+                      fill="#5271ff"
+                    ></path>
+                  </svg>
+                  <FaCamera
+                    className="hidden min-[368px]:block h-6 w-6 text-[#5271ff]"
+                    onClick={() =>
+                      notificacion(
+                        "Escribe !foto para enviar una foto solo para verse una vez."
+                      )
+                    }
+                  />
+                  <FaRegImage
+                    className="hidden min-[368px]:block h-6 w-6 text-[#5271ff]"
+                    onClick={() =>
+                      notificacion(
+                        "Escribe !foto para enviar una foto solo para verse una vez."
+                      )
+                    }
+                  />
+                  <FaMicrophone
+                    className="hidden min-[368px]:block h-6 w-6 text-[#5271ff]"
+                    onClick={() =>
+                      notificacion(
+                        "Funcionalidad en desarrollo. Escribe texto."
+                      )
+                    }
+                  />
+                </article>
+              ) : (
+                <IoIosArrowForward
+                  className="w-7 h-7 text-[#5271ff]"
+                  onClick={() =>
+                    notificacion(
+                      "Escribe !foto para enviar una foto solo para verse una vez."
+                    )
+                  }
+                />
+              )}
               <article className="bg-[#1f272a] h-12 flex items-center rounded-full px-3 w-full max-w-[85%] min-w-[150px]">
                 <input
                   type="text"
@@ -306,7 +343,14 @@ export const FacebookChat: React.FC = () => {
                   className="flex-1 text-lg bg-transparent text-white px-2 py-2 outline-none min-w-0"
                   {...register("message")}
                 />
-                <svg height="24px" viewBox="0 0 38 38" width="24px">
+                <svg
+                  height="24px"
+                  viewBox="0 0 38 38"
+                  width="24px"
+                  onClick={() =>
+                    notificacion("Usa los emojis del teclado de tu celular.")
+                  }
+                >
                   <g fill="none" fillRule="evenodd">
                     <g transform="translate(-893.000000, -701.000000)">
                       <g transform="translate(709.000000, 314.000000)">
@@ -331,6 +375,9 @@ export const FacebookChat: React.FC = () => {
                     height="24"
                     viewBox="0 0 16 16"
                     width="24"
+                    onClick={() =>
+                      notificacion("Usa los emojis del teclado de tu celular.")
+                    }
                   >
                     <path
                       d="M16,9.1c0-0.8-0.3-1.1-0.6-1.3c0.2-0.3,0.3-0.7,0.3-1.2c0-1-0.8-1.7-2.1-1.7h-3.1c0.1-0.5,0.2-1.3,0.2-1.8 c0-1.1-0.3-2.4-1.2-3C9.3,0.1,9,0,8.7,0C8.1,0,7.7,0.2,7.6,0.4C7.5,0.5,7.5,0.6,7.5,0.7L7.6,3c0,0.2,0,0.4-0.1,0.5L5.7,6.6 c0,0-0.1,0.1-0.1,0.1l0,0l0,0L5.3,6.8C5.1,7,5,7.2,5,7.4v6.1c0,0.2,0.1,0.4,0.2,0.5c0.1,0.1,1,1,2,1h5.2c0.9,0,1.4-0.3,1.8-0.9 c0.3-0.5,0.2-1,0.1-1.4c0.5-0.2,0.9-0.5,1.1-1.2c0.1-0.4,0-0.8-0.2-1C15.6,10.3,16,9.9,16,9.1z"
@@ -536,11 +583,12 @@ export const FacebookChat: React.FC = () => {
           <StarBorder
             as="button"
             className="custom-class sm:w-96 font-bold"
-            color="#0866fe"
+            color="#ff00c9"
             speed="6s"
-            onClick={handleDownload}
+            onClick={handleScreenshot}
+            disabled={isCapturing}
           >
-            Captura de pantalla
+            {isCapturing ? "Cargando..." : "Captura de pantalla"}
           </StarBorder>
         </div>
       </main>

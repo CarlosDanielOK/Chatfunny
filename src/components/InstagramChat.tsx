@@ -15,9 +15,11 @@ import { SplitText } from "./animations/SplitText";
 import { Cards } from "./Cards";
 import { StarBorder } from "./animations/StarBorder";
 import { useDownloadChat } from "@/hooks/useDownloadChat";
+import notificacion from "./Notificacion";
 
 export const InstagramChat: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [isCapturing, setIsCapturing] = useState(false);
   const { register, handleSubmit, watch, resetField, setValue } =
     useForm<IFormValues>({
       defaultValues: {
@@ -112,6 +114,11 @@ export const InstagramChat: React.FC = () => {
   };
 
   const { chatRef, handleDownload } = useDownloadChat();
+  const handleScreenshot = async () => {
+    setIsCapturing(true);
+    await handleDownload();
+    setIsCapturing(false);
+  };
 
   return (
     <>
@@ -206,7 +213,7 @@ export const InstagramChat: React.FC = () => {
           </section>
 
           {/* ChatMensajes */}
-          <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2">
+          <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2 scrollbar-hide">
             {messages.map((msg, index) => {
               const isSenderMe = msg.sender === "yo";
               const prevMsg = messages[index - 1];
@@ -312,7 +319,14 @@ export const InstagramChat: React.FC = () => {
             >
               <article className="bg-[#262626] h-14 flex items-center rounded-full px-2 w-full min-w-[150px]">
                 <p className="bg-[#d101c6] rounded-full h-10 w-10 flex items-center justify-center aspect-square">
-                  <BiSolidCamera className="h-6 w-6" />
+                  <BiSolidCamera
+                    className="h-6 w-6 cursor-pointer"
+                    onClick={() =>
+                      notificacion(
+                        "Escribe !foto para enviar una foto solo para verse una vez."
+                      )
+                    }
+                  />
                 </p>
 
                 <input
@@ -335,6 +349,11 @@ export const InstagramChat: React.FC = () => {
                         role="img"
                         viewBox="0 0 24 24"
                         width="24"
+                        onClick={() =>
+                          notificacion(
+                            "Funcionalidad en desarrollo. Escribe texto."
+                          )
+                        }
                       >
                         <path
                           d="M19.5 10.671v.897a7.5 7.5 0 0 1-15 0v-.897"
@@ -381,6 +400,11 @@ export const InstagramChat: React.FC = () => {
                         role="img"
                         viewBox="0 0 24 24"
                         width="24"
+                        onClick={() =>
+                          notificacion(
+                            "Escribe !foto para enviar una foto solo para verse una vez."
+                          )
+                        }
                       >
                         <path
                           d="M6.549 5.013A1.557 1.557 0 1 0 8.106 6.57a1.557 1.557 0 0 0-1.557-1.557Z"
@@ -409,6 +433,11 @@ export const InstagramChat: React.FC = () => {
                         role="img"
                         viewBox="0 0 24 24"
                         width="24"
+                        onClick={() =>
+                          notificacion(
+                            "Usa los emojis del teclado de tu celular."
+                          )
+                        }
                       >
                         <path
                           d="M13.11 22H7.416A5.417 5.417 0 0 1 2 16.583V7.417A5.417 5.417 0 0 1 7.417 2h9.166A5.417 5.417 0 0 1 22 7.417v5.836a2.083 2.083 0 0 1-.626 1.488l-6.808 6.664A2.083 2.083 0 0 1 13.11 22Z"
@@ -437,7 +466,14 @@ export const InstagramChat: React.FC = () => {
                           strokeWidth="2"
                         ></path>
                       </svg>
-                      <FiPlusCircle className="h-6 w-6" />
+                      <FiPlusCircle
+                        className="h-6 w-6"
+                        onClick={() =>
+                          notificacion(
+                            "Escribe !foto para enviar una foto solo para verse una vez."
+                          )
+                        }
+                      />
                     </div>
                   ) : (
                     <div className="bg-[#7838f6] h-10 w-10 flex items-center justify-center rounded-full">
@@ -634,9 +670,10 @@ export const InstagramChat: React.FC = () => {
             className="custom-class sm:w-96 font-bold"
             color="#ff00c9"
             speed="6s"
-            onClick={handleDownload}
+            onClick={handleScreenshot}
+            disabled={isCapturing}
           >
-            Captura de pantalla
+            {isCapturing ? "Cargando..." : "Captura de pantalla"}
           </StarBorder>
         </div>
       </main>

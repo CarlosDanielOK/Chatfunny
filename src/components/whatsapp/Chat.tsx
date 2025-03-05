@@ -15,6 +15,7 @@ import { Cards } from "../Cards";
 
 export const WhatsAppChat: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const [isCapturing, setIsCapturing] = useState(false);
   const { register, handleSubmit, watch, resetField, setValue } =
     useForm<IFormValues>({
       defaultValues: {
@@ -38,6 +39,11 @@ export const WhatsAppChat: React.FC = () => {
   const [uploadError, setUploadError] = useState<string | null>(null);
 
   const { chatRef, handleDownload } = useDownloadChat();
+  const handleScreenshot = async () => {
+    setIsCapturing(true);
+    await handleDownload();
+    setIsCapturing(false);
+  };
 
   const onSubmit = (data: IFormValues) => {
     if (data.message.trim() === "") return;
@@ -121,11 +127,12 @@ export const WhatsAppChat: React.FC = () => {
           <StarBorder
             as="button"
             className="custom-class sm:w-96 font-bold"
-            color="#3fe25d"
+            color="#ff00c9"
             speed="6s"
-            onClick={handleDownload}
+            onClick={handleScreenshot}
+            disabled={isCapturing}
           >
-            Captura de pantalla
+            {isCapturing ? "Cargando..." : "Captura de pantalla"}
           </StarBorder>
         </div>
       </main>

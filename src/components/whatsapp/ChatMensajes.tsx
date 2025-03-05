@@ -2,7 +2,7 @@ import { IChatMensajesProps } from "@/interfaces/types";
 
 export const ChatMensajes: React.FC<IChatMensajesProps> = ({ messages }) => {
   return (
-    <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2">
+    <section className="absolute top-16 bottom-16 w-full overflow-y-auto px-2 scrollbar-hide">
       {messages.map((msg, index) => {
         const isSenderMe = msg.sender === "yo";
         const prevMessage = messages[index - 1];
