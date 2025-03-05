@@ -17,7 +17,31 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Chatfunny",
   description:
-    "Crea chats ficticios de WhatsApp, Instagram, Facebook, Messenger, y compártelos en tus redes sociales.",
+    "Crea chats ficticios de WhatsApp, Instagram, Facebook, Messenger, y compártelos en tus redes sociales para hacer bromas.",
+  openGraph: {
+    title: "Chatfunny",
+    description:
+      "Crea chats ficticios de WhatsApp, Instagram, Facebook, Messenger, y compártelos en tus redes sociales para hacer bromas.",
+    url: "https://chatfunny.vercel.app/",
+    siteName: "Chatfunny",
+    images: [
+      {
+        url: "https://chatfunny.vercel.app/",
+        width: 480,
+        height: 480,
+        alt: "Vista previa de Chatfunny",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chatfunny",
+    description:
+      "Crea chats ficticios de WhatsApp, Instagram, Facebook, Messenger, y compártelos en tus redes sociales.",
+    images: ["https://chatfunny.vercel.app/"],
+  },
 };
 
 export default function RootLayout({

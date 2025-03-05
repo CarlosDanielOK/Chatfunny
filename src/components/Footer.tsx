@@ -9,14 +9,14 @@ export const Footer = () => {
       <h3 className="text-[#f2f2f280]">CONTACTO</h3>
       <div className="flex justify-center items-center space-x-8 mt-2">
         <Link
-          href="mailto:carlosdaniellazo06@gmail.com"
+          href="https://www.instagram.com/daniel_swan_ok?igsh=dGtjd3ptY3V6OWth"
           className="flex items-center space-x-1"
         >
           <p>Instagram</p>
           <FaInstagram />
         </Link>
         <Link
-          href="https://www.linkedin.com/in/carlos-daniel-lazo/"
+          href="https://www.tiktok.com/@carlosdanielok?_t=ZM-8uPq40k3VBO&_r=1"
           target="_blank"
           className="flex items-center space-x-1"
         >
