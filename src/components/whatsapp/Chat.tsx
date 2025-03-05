@@ -136,10 +136,10 @@ export const WhatsAppChat: React.FC = () => {
           </StarBorder>
         </div>
       </main>
-      <section>
+      <section id="cards-section">
         <h2 className="flex flex-col justify-center items-center truncate mt-16 mb-6">
           <SplitText
-            text="Elige tu chat personalizado:"
+            text="Elige el chat que quieres crear:"
             className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
             delay={20}
             animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
