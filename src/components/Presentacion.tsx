@@ -116,7 +116,7 @@ export const Presentacion = () => {
               <p className="sm:max-w-96 md:text-lg">
                 Saca una{" "}
                 <span className="font-bold">captura de pantalla del chat</span>{" "}
-                con el botón de "Captura de pantalla", o podes{" "}
+                con el botón &quot;Captura de pantalla&quot;, o podes{" "}
                 <span className="font-bold">
                   sacar una Screeshot con tu celular (recomendado).
                 </span>{" "}
