@@ -17,7 +17,7 @@ export const ScrollButton: React.FC<ScrollButtonProps> = ({
   };
 
   return (
-    <button onClick={handleClick} className="btn-scroll px-6 py-3 bg-blue-600 font-bold rounded-full hover:bg-blue-700 text-lg">
+    <button onClick={handleClick} className="btn-scroll px-6 py-3 bg-blue-600 font-bold rounded-full hover:bg-blue-700 text-lg mt-6">
       {buttonText}
     </button>
   );

@@ -26,18 +26,8 @@ export const Presentacion = () => {
             enableOnHover={false}
             className="custom-class"
           >
-            Crea tu versión de la historia.
+            Tan real que te creerán.
           </GlitchText>
-          {/* <SplitText
-            text="Compártelo en tus redes sociales."
-            className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-4xl md:w-[85%] lg:text-6xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
-            delay={20}
-            animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
-            animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            easing="easeOutCubic"
-            threshold={0.2}
-            rootMargin="-50px"
-          /> */}
         </h1>
         <div className="relative h-96 md:h-[500px] lg:h-[600px]">
           <CircularGallery
@@ -64,7 +54,7 @@ export const Presentacion = () => {
         <Cards />
       </section>
       <section>
-        <h2 className="flex justify-center items-center truncate mt-10">
+        <h2 className="flex justify-center items-center truncate mt-10 md:mt-16">
           <SplitText
             text="Configurar el chat"
             className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
@@ -90,7 +80,9 @@ export const Presentacion = () => {
                 <span className="font-bold">editar su estado de conexión</span>{" "}
                 (por ejemplo: En línea, Activo(a) ahora, últ. vez hoy a las
                 01:01, Activo(a) hace 25 min, etcétera), y{" "}
-                <span className="font-bold">actualizar su foto de perfil</span>.
+                <span className="font-bold">
+                  actualizar su foto de perfil. Todo esto en tiempo real.
+                </span>
               </p>
             </div>
             <div className="w-[90vw] md:w-[50%] flex justify-center items-center">
@@ -122,17 +114,15 @@ export const Presentacion = () => {
           <div className="sm:w-[90vw] md:w-[80vw] lg:w-[60vw] flex flex-col sm:flex-row justify-center items-center sm:my-4">
             <div className="w-[90vw] my-4 md:w-[50%] sm:flex sm:justify-center sm:px-4 sm:items-center">
               <p className="sm:max-w-96 md:text-lg">
-                Puedes sacar una{" "}
+                Saca una{" "}
+                <span className="font-bold">captura de pantalla del chat</span>{" "}
+                con el botón de "Captura de pantalla", o podes{" "}
                 <span className="font-bold">
-                  captura de pantalla de tu chat personalizado
+                  sacar una Screeshot con tu celular (recomendado).
                 </span>{" "}
-                con el botón de captura, o puedes{" "}
-                <span className="font-bold">
-                  sacar una captura de pantalla con tu celular
-                </span>
-                . Luego, puedes{" "}
-                <span className="font-bold">subirlo a tus redes sociales</span>{" "}
-                para divertirte.
+                Luego,{" "}
+                <span className="font-bold">súbelo a tus redes sociales</span>{" "}
+                para reírte con tus amig@s y crean que es una conversación real.
               </p>
             </div>
             <div className="w-[90vw] md:w-[50%] flex justify-center items-center">
@@ -147,8 +137,20 @@ export const Presentacion = () => {
           </div>
         </article>
       </section>
-      <section className="flex justify-center items-center mt-12">
-        <ScrollButton targetId="cards-section" buttonText="Crear ahora" />
+      <section>
+        <h2 className="flex flex-col justify-center items-center truncate mt-10">
+          <SplitText
+            text="Fiel al diseño original de las aplicaciones."
+            className="text-xl font-semibold text-center w-[95%] sm:text-2xl sm:w-[90%] md:text-3xl md:w-[85%] lg:text-4xl lg:w-[85%] xl:w-[75%] 2xl:w-[65%]"
+            delay={20}
+            animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+            animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+            easing="easeOutCubic"
+            threshold={0.2}
+            rootMargin="-50px"
+          />
+          <ScrollButton targetId="cards-section" buttonText="Crear ahora" />
+        </h2>
       </section>
     </main>
   );
