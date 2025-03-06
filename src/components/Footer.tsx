@@ -10,6 +10,7 @@ export const Footer = () => {
       <div className="flex justify-center items-center space-x-8 mt-2">
         <Link
           href="https://www.instagram.com/daniel_swan_ok?igsh=dGtjd3ptY3V6OWth"
+          target="_blank"
           className="flex items-center space-x-1"
         >
           <p>Instagram</p>
