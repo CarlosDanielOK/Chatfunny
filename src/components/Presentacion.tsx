@@ -38,6 +38,7 @@ export const Presentacion = () => {
           />
         </div>
       </section>
+
       <section id="cards-section">
         <h2 className="flex flex-col justify-center items-center truncate mt-10 mb-6">
           <SplitText
@@ -114,7 +115,8 @@ export const Presentacion = () => {
             <div className="w-[90vw] my-4 md:w-[50%] sm:flex sm:justify-center sm:px-4 sm:items-center">
               <p className="sm:max-w-96 md:text-lg">
                 Escribe <span className="font-bold">!foto</span> para enviar una
-                foto solo para verse una vez. Y envía los emojis incluidos en tu celular para más realismo.
+                foto solo para verse una vez. Y envía los emojis incluidos en tu
+                celular para más realismo.
               </p>
             </div>
             <div className="w-[90vw] md:w-[50%] flex justify-center items-center flex-col gap-6">
@@ -143,6 +145,7 @@ export const Presentacion = () => {
           </div>
         </article>
       </section>
+
       <section>
         <h2 className="flex justify-center items-center truncate mt-10">
           <SplitText
@@ -187,6 +190,7 @@ export const Presentacion = () => {
           </div>
         </article>
       </section>
+
       <section>
         <h2 className="flex justify-center items-center truncate mt-10">
           <SplitText
@@ -227,6 +231,7 @@ export const Presentacion = () => {
           </div>
         </article>
       </section>
+
       <section className="flex justify-center items-center mt-10">
         <ScrollButton targetId="cards-section" buttonText="Crear ahora" />
       </section>
