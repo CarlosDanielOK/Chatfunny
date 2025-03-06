@@ -16,7 +16,7 @@ export default function Messenger() {
           rootMargin="-50px"
         />
       </h2>
-      <FacebookChat />;
+      <FacebookChat />
     </>
   );
 }

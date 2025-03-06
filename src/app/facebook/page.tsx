@@ -16,7 +16,7 @@ export default function Facebook() {
           rootMargin="-50px"
         />
       </h2>
-      <FacebookChat />;
+      <FacebookChat />
     </>
   );
 }

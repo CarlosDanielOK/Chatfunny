@@ -21,7 +21,7 @@ export const WhatsAppChat: React.FC = () => {
       defaultValues: {
         message: "",
         sender: "yo",
-        contactName: "Carlos Daniel",
+        contactName: "Carlos",
         contactStatus: "En línea",
         contactPhoto: "/fotodeperfil.png",
       },

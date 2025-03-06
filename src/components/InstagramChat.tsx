@@ -25,7 +25,7 @@ export const InstagramChat: React.FC = () => {
       defaultValues: {
         message: "",
         sender: "yo",
-        contactName: "Carlos Daniel",
+        contactName: "Carlos",
         contactStatus: "Activo(a) ahora",
         contactPhoto: "/fotodeperfilig.png",
       },
