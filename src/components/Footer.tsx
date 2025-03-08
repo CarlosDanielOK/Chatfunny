@@ -26,7 +26,7 @@ export const Footer = () => {
         </Link>
       </div>
       <div className="mt-6 text-center">
-        <p>&copy; 2025 Carlos Daniel. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Carlos. Todos los derechos reservados.</p>
       </div>
     </footer>
   );
