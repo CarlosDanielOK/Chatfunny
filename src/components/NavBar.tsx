@@ -14,7 +14,7 @@ export const NavBar = () => {
     <header className="flex shadow-white text-white h-14 items-center justify-between px-2 relative my-0.5">
       {/* Logo y título */}
       <section className="flex items-center gap-2 w-36">
-        <Link href="/" className="w-11 h-11">
+        <Link href="/" className="w-12 h-12">
           <Image
             src="/logo.png"
             width={480}
