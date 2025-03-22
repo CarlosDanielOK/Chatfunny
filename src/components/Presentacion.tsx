@@ -180,7 +180,7 @@ export const Presentacion = () => {
             </div>
             <div className="w-[90vw] md:w-[50%] flex justify-center items-center">
               <Image
-                src="/settingschat.jpg"
+                src="/configuracion.jpg"
                 width={400}
                 height={400}
                 alt="Configuración del chat"
