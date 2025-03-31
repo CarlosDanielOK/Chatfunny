@@ -49,10 +49,24 @@ export const WhatsAppChat: React.FC = () => {
     if (data.message.trim() === "") return;
 
     let isFoto = false;
+    let isVideo = false;
+    let isSpecial = false;
+    let isDeleted = false;
 
-    if (data.message === "!foto") {
+    if (data.message === "!fotovista" || data.message === "!videovisto") {
       data.message = "Abierto";
       isFoto = true;
+    } else if (data.message === "!foto") {
+      data.message = "Foto";
+      isFoto = true;
+      isSpecial = true;
+    } else if (data.message === "!video") {
+      data.message = "Video";
+      isVideo = true;
+      isSpecial = true;
+    } else if (data.message === "!eliminar") {
+      data.message = data.sender === "yo" ? "Eliminaste este mensaje." : "Se eliminó este mensaje.";
+      isDeleted = true;
     }
 
     const newMsg: IMessage = {
@@ -65,6 +79,9 @@ export const WhatsAppChat: React.FC = () => {
         hour12: false,
       }),
       isFoto,
+      isVideo,
+      isSpecial,
+      isDeleted,
     };
     setMessages((prev) => [...prev, newMsg]);
     resetField("message");

@@ -6,6 +6,10 @@ export interface IMessage {
   sender: "yo" | "contacto";
   time: string;
   isFoto?: boolean;
+  isVideo?: boolean;
+  isVisto?: boolean;
+  isSpecial?: boolean;
+  isDeleted?: boolean;
 }
 
 export interface IFormValues {

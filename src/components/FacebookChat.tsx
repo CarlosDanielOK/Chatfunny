@@ -18,6 +18,7 @@ import { useDownloadChat } from "@/hooks/useDownloadChat";
 import { StarBorder } from "./animations/StarBorder";
 import notificacion from "./Notificacion";
 import { IoIosArrowForward } from "react-icons/io";
+import { FaPlay } from "react-icons/fa";
 
 export const FacebookChat: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -48,15 +49,42 @@ export const FacebookChat: React.FC = () => {
     if (data.message.trim() === "") return;
 
     let isFoto = false;
+    let text = data.message;
+    let isDeleted = false;
 
-    if (data.message === "!foto") {
-      data.message = "Foto";
-      isFoto = true;
+    if (data.sender === "yo") {
+      if (data.message === "!fotovista" || data.message === "!foto") {
+        text = "Foto";
+        isFoto = true;
+      } else if (data.message === "!videovisto" || data.message === "!video") {
+        text = "Video";
+        isFoto = true;
+      } else if (data.message === "!eliminar") {
+        text = "Eliminaste un mensaje";
+        isDeleted = true;
+      }
+    } else if (data.sender === "contacto") {
+      if (data.message === "!foto") {
+        text = "Ver foto";
+        isFoto = true;
+      } else if (data.message === "!video") {
+        text = "Ver video";
+        isFoto = true;
+      } else if (data.message === "!fotovista") {
+        text = "Foto";
+        isFoto = true;
+      } else if (data.message === "!videovisto") {
+        text = "Video";
+        isFoto = true;
+      } else if (data.message === "!eliminar") {
+        text = `${data.contactName} eliminó un mensaje`;
+        isDeleted = true;
+      }
     }
 
     const newMsg: IMessage = {
       id: Date.now(),
-      text: data.message,
+      text: text,
       sender: data.sender,
       time: new Date().toLocaleTimeString([], {
         hour: "2-digit",
@@ -64,6 +92,7 @@ export const FacebookChat: React.FC = () => {
         hour12: false,
       }),
       isFoto,
+      isDeleted,
     };
     setMessages((prev) => [...prev, newMsg]);
     resetField("message");
@@ -194,16 +223,15 @@ export const FacebookChat: React.FC = () => {
                     className={`flex justify-end ${marginClass}`}
                   >
                     <div
-                      className={`px-3 py-2 flex max-w-[80%] bg-[#4c71fe] ${getRoundedClasses(
+                      className={`px-3 py-2 flex max-w-[80%] ${msg.isDeleted ? 'border border-[#212121] text-[#b0b3b9]' : 'bg-[#4c71fe]'} ${getRoundedClasses(
                         index,
                         messages
                       )}`}
                     >
                       <p
-                        className={`w-full break-words ${
-                          msg.isFoto &&
+                        className={`w-full break-words ${msg.isFoto &&
                           "text-[#f9fdff] flex items-center gap-1.5"
-                        }`}
+                          }`}
                       >
                         {msg.isFoto && (
                           <svg
@@ -249,15 +277,16 @@ export const FacebookChat: React.FC = () => {
                       )}
                     </div>
                     <div
-                      className={`px-3 py-2 flex max-w-[85%] bg-[#333333] ${roundedClasses}`}
+                      className={`px-3 py-2 flex max-w-[85%] ${msg.isDeleted ? 'border border-[#212121] text-[#b0b3b9]' : 'bg-[#333333]'} ${roundedClasses}`}
                     >
                       <p
-                        className={`w-full break-words ${
-                          msg.isFoto &&
+                        className={`w-full break-words ${msg.isFoto &&
                           "text-[#f9f9f9] flex items-center gap-1.5"
-                        }`}
+                          } ${msg.text === "Ver foto" || msg.text === "Ver video" ? "font-bold" : ""}`}
                       >
-                        {msg.isFoto && (
+                        {msg.isFoto && (msg.text === "Ver foto" || msg.text === "Ver video" ? (
+                          <FaPlay className="text-[#5647ea] w-3 h-3" />
+                        ) : (
                           <svg
                             viewBox="6 6 24 24"
                             fill="currentColor"
@@ -268,7 +297,7 @@ export const FacebookChat: React.FC = () => {
                             <path d="M7 18c0-6.075 4.925-11 11-11a1.25 1.25 0 1 1 0 2.5 8.5 8.5 0 0 0 0 17 1.25 1.25 0 1 1 0 2.5c-6.075 0-11-4.925-11-11zM22.25 10.5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM27.5 12.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM27.75 19.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM27.5 23.25a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM22.25 28a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"></path>
                             <path d="M19.448 13.134c.34.19.552.548.552.937v7.858a1.071 1.071 0 0 1-2.143 0v-5.667a.143.143 0 0 0-.218-.12l-1 .624a1.071 1.071 0 1 1-1.135-1.817l2.857-1.786c.33-.207.746-.218 1.087-.029z"></path>
                           </svg>
-                        )}
+                        ))}
                         {msg.text}
                       </p>
                     </div>
@@ -380,7 +409,7 @@ export const FacebookChat: React.FC = () => {
                     }
                   >
                     <path
-                      d="M16,9.1c0-0.8-0.3-1.1-0.6-1.3c0.2-0.3,0.3-0.7,0.3-1.2c0-1-0.8-1.7-2.1-1.7h-3.1c0.1-0.5,0.2-1.3,0.2-1.8 c0-1.1-0.3-2.4-1.2-3C9.3,0.1,9,0,8.7,0C8.1,0,7.7,0.2,7.6,0.4C7.5,0.5,7.5,0.6,7.5,0.7L7.6,3c0,0.2,0,0.4-0.1,0.5L5.7,6.6 c0,0-0.1,0.1-0.1,0.1l0,0l0,0L5.3,6.8C5.1,7,5,7.2,5,7.4v6.1c0,0.2,0.1,0.4,0.2,0.5c0.1,0.1,1,1,2,1h5.2c0.9,0,1.4-0.3,1.8-0.9 c0.3-0.5,0.2-1,0.1-1.4c0.5-0.2,0.9-0.5,1.1-1.2c0.1-0.4,0-0.8-0.2-1C15.6,10.3,16,9.9,16,9.1z"
+                      d="M16,9.1c0-0.8-0.3-1.1-0.6-1.3c0.2-0.3,0.3-0.7,0.3-1.2c0-1-0.8-1.7-2.1-1.7h-3.1c0.1-0.5,0.2-1.3,0.2-1.8 c0-1.1-0.3-2.4-1.2-3C9.3,0.1,9,0,8.7,0C8.1,0,7.7,0.2,7.6,0.4C7.5,0.5,7.5,0.6,7.5,0.7L7.6,3c0,0.2,0,0.4-0.1,0.5L5.7,6.6c0,0-0.1,0.1-0.1,0.1l0,0l0,0L5.3,6.8C5.1,7,5,7.2,5,7.4v6.1c0,0.2,0.1,0.4,0.2,0.5c0.1,0.1,1,1,2,1h5.2c0.9,0,1.4-0.3,1.8-0.9c0.3-0.5,0.2-1,0.1-1.4c0.5-0.2,0.9-0.5,1.1-1.2c0.1-0.4,0-0.8-0.2-1C15.6,10.3,16,9.9,16,9.1z"
                       fill="#5271ff"
                     ></path>
                     <path
@@ -410,11 +439,10 @@ export const FacebookChat: React.FC = () => {
             <p>Elige quién envía el mensaje</p>
             <section className="flex gap-4 mb-4 mt-1">
               <label
-                className={`h-12 border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${
-                  watch("sender") === "yo"
-                    ? "border-blue-500 border-4"
-                    : "border-[#555555]"
-                }`}
+                className={`h-12 border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${watch("sender") === "yo"
+                  ? "border-blue-500 border-4"
+                  : "border-[#555555]"
+                  }`}
               >
                 <input
                   type="radio"
@@ -426,11 +454,10 @@ export const FacebookChat: React.FC = () => {
                 Yo
               </label>
               <label
-                className={`h-12 border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${
-                  watch("sender") === "contacto"
-                    ? "border-blue-500 border-4"
-                    : "border-[#555555]"
-                }`}
+                className={`h-12 border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${watch("sender") === "contacto"
+                  ? "border-blue-500 border-4"
+                  : "border-[#555555]"
+                  }`}
               >
                 <input
                   type="radio"
@@ -524,11 +551,10 @@ export const FacebookChat: React.FC = () => {
                 <label>Foto de perfil</label>
                 <div className="flex items-center flex-col">
                   <label
-                    className={`cursor-pointer w-full h-12 text-lg flex justify-center items-center font-bold my-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 ${
-                      uploadStatus === "loading"
-                        ? "bg-gray-600"
-                        : "bg-blue-600 hover:bg-blue-700"
-                    }`}
+                    className={`cursor-pointer w-full h-12 text-lg flex justify-center items-center font-bold my-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 ${uploadStatus === "loading"
+                      ? "bg-gray-600"
+                      : "bg-blue-600 hover:bg-blue-700"
+                      }`}
                   >
                     {uploadStatus === "loading" ? (
                       <span>Subiendo...</span>

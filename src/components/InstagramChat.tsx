@@ -16,6 +16,7 @@ import { Cards } from "./Cards";
 import { StarBorder } from "./animations/StarBorder";
 import { useDownloadChat } from "@/hooks/useDownloadChat";
 import notificacion from "./Notificacion";
+import { FaPlay } from "react-icons/fa";
 
 export const InstagramChat: React.FC = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -46,15 +47,35 @@ export const InstagramChat: React.FC = () => {
     if (data.message.trim() === "") return;
 
     let isFoto = false;
+    let text = data.message;
 
-    if (data.message === "!foto") {
-      data.message = "Foto";
-      isFoto = true;
+    if (data.sender === "yo") {
+      if (data.message === "!fotovista" || data.message === "!foto") {
+        text = "Foto";
+        isFoto = true;
+      } else if (data.message === "!videovisto" || data.message === "!video") {
+        text = "Video";
+        isFoto = true;
+      }
+    } else if (data.sender === "contacto") {
+      if (data.message === "!foto") {
+        text = "Ver foto";
+        isFoto = true;
+      } else if (data.message === "!video") {
+        text = "Reproducir video";
+        isFoto = true;
+      } else if (data.message === "!fotovista") {
+        text = "Foto";
+        isFoto = true;
+      } else if (data.message === "!videovisto") {
+        text = "Video";
+        isFoto = true;
+      }
     }
 
     const newMsg: IMessage = {
       id: Date.now(),
-      text: data.message,
+      text: text,
       sender: data.sender,
       time: new Date().toLocaleTimeString([], {
         hour: "2-digit",
@@ -233,10 +254,9 @@ export const InstagramChat: React.FC = () => {
                       )}`}
                     >
                       <p
-                        className={`w-full break-words ${
-                          msg.isFoto &&
+                        className={`w-full break-words ${msg.isFoto &&
                           "text-[#cec9ff] flex items-center gap-1.5"
-                        }`}
+                          }`}
                       >
                         {msg.isFoto && (
                           <svg
@@ -285,12 +305,13 @@ export const InstagramChat: React.FC = () => {
                       className={`px-3 py-2 flex max-w-[85%] bg-[#1f272a] ${roundedClasses}`}
                     >
                       <p
-                        className={`w-full break-words ${
-                          msg.isFoto &&
+                        className={`w-full break-words ${msg.isFoto &&
                           "text-[#989898] flex items-center gap-1.5"
-                        }`}
+                          } ${(msg.text === "Ver foto" || msg.text === "Reproducir video") ? "font-bold text-white" : ""}`}
                       >
-                        {msg.isFoto && (
+                        {msg.isFoto && (msg.text === "Ver foto" || msg.text === "Reproducir video" ? (
+                          <FaPlay className="text-[#5653f8] w-3 h-3" />
+                        ) : (
                           <svg
                             fill="currentColor"
                             height="16"
@@ -301,7 +322,7 @@ export const InstagramChat: React.FC = () => {
                             <polygon points="13.25 17 13.25 7 10.919 7 8.199 8.96 8.199 11.414 10.75 9.717 10.75 17 13.25 17"></polygon>
                             <path d="M2.97 12.137a1.5 1.5 0 0 0-1.5-1.482h-.02a1.5 1.5 0 0 0-1.48 1.519 11.96 11.96 0 0 0 .914 4.45 1.5 1.5 0 0 0 2.771-1.15 8.955 8.955 0 0 1-.685-3.337Zm8.02-9.064a9.066 9.066 0 0 1 3.4.279 1.5 1.5 0 0 0 .803-2.89A12.081 12.081 0 0 0 10.665.09a1.5 1.5 0 0 0-1.33 1.653 1.492 1.492 0 0 0 1.654 1.33Zm7.836 3.115a11.434 11.434 0 0 1 1.375 2.252 1.499 1.499 0 1 0 2.73-1.242 14.533 14.533 0 0 0-1.769-2.891c-.249-.297-.51-.58-.78-.845A1.5 1.5 0 0 0 18.278 5.6c.202.199.399.41.548.587ZM6.188 5.122c.194-.163.394-.317.598-.46A1.5 1.5 0 0 0 5.06 2.207a11.964 11.964 0 0 0-3.67 4.144A1.498 1.498 0 0 0 2.708 8.56c.534 0 1.052-.287 1.322-.791a8.987 8.987 0 0 1 2.157-2.648ZM9.4 20.682c-1.056-.335-2.069-.886-3.008-1.64a1.5 1.5 0 1 0-1.877 2.34c1.23.986 2.569 1.713 3.98 2.159a1.5 1.5 0 0 0 .904-2.86Zm13.213-9.196c-.811-.089-1.554.53-1.63 1.356A8.502 8.502 0 0 1 20 16.075a1.499 1.499 0 1 0 2.646 1.412 11.48 11.48 0 0 0 1.322-4.37 1.499 1.499 0 0 0-1.356-1.63Zm-5.649 7.96a9.284 9.284 0 0 1-3.129 1.394 1.5 1.5 0 1 0 .686 2.92 12.256 12.256 0 0 0 4.14-1.84 1.5 1.5 0 0 0-1.697-2.474Z"></path>
                           </svg>
-                        )}
+                        ))}
                         {msg.text}
                       </p>
                     </div>
@@ -495,11 +516,10 @@ export const InstagramChat: React.FC = () => {
             <p>Elige quién envía el mensaje</p>
             <section className="flex gap-4 mb-4 mt-1">
               <label
-                className={`h-12 border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${
-                  watch("sender") === "yo"
+                className={`h-12 border-2 w-full rounded-md flex items-center gap-1 px-2 cursor-pointer ${watch("sender") === "yo"
                     ? "border-blue-500 border-4"
                     : "border-[#555555]"
-                }`}
+                  }`}
               >
                 <input
                   type="radio"
@@ -511,11 +531,10 @@ export const InstagramChat: React.FC = () => {
                 Yo
               </label>
               <label
-                className={`h-12 border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${
-                  watch("sender") === "contacto"
+                className={`h-12 border-2 rounded-md flex items-center gap-1 px-2 w-full cursor-pointer ${watch("sender") === "contacto"
                     ? "border-blue-500 border-4"
                     : "border-[#555555]"
-                }`}
+                  }`}
               >
                 <input
                   type="radio"
@@ -609,11 +628,10 @@ export const InstagramChat: React.FC = () => {
                 <label>Foto de perfil</label>
                 <div className="flex items-center flex-col">
                   <label
-                    className={`cursor-pointer w-full h-12 text-lg flex justify-center items-center font-bold my-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 ${
-                      uploadStatus === "loading"
+                    className={`cursor-pointer w-full h-12 text-lg flex justify-center items-center font-bold my-1 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 ${uploadStatus === "loading"
                         ? "bg-gray-600"
                         : "bg-blue-600 hover:bg-blue-700"
-                    }`}
+                      }`}
                   >
                     {uploadStatus === "loading" ? (
                       <span>Subiendo...</span>
