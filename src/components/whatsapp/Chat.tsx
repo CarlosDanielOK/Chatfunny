@@ -153,6 +153,26 @@ export const WhatsAppChat: React.FC = () => {
           </StarBorder>
         </div>
       </main>
+      <section className="mt-16">
+        <h2 className="text-center text-2xl font-bold mb-6">Comandos de WhatsApp</h2>
+        <div className="text-center flex flex-col gap-2 px-2 sm:px-0">
+          <p>
+            <span className="font-bold">!foto</span> - Envia una foto para verse una sola vez.
+          </p>
+          <p>
+            <span className="font-bold">!video</span> - Envia un video para verse una sola vez.
+          </p>
+          <p>
+            <span className="font-bold">!fotovista</span> - Envia una foto para verse una sola vez ya vista.
+          </p>
+          <p>
+            <span className="font-bold">!videovisto</span> - Envia un video para verse una sola vez ya visto.
+          </p>
+          <p>
+            <span className="font-bold">!eliminar</span> - Envia un mensaje eliminado.
+          </p>
+        </div>
+      </section>
       <section id="cards-section">
         <h2 className="flex flex-col justify-center items-center truncate mt-16 mb-6">
           <SplitText

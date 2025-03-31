@@ -196,7 +196,7 @@ export const ChatMensajes: React.FC<IChatMensajesProps> = ({ messages }) => {
                         </svg>
                       )
                     )}
-                    <span className={msg.isSpecial ? "font-bold" : ""}>
+                    <span className={msg.isSpecial ? "font-bold text-white" : ""}>
                       {msg.text}
                     </span>
                   </p>
