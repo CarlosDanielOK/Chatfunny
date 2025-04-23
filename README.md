@@ -3,6 +3,7 @@
 Crea chats ficticios de WhatsApp, Instagram, Facebook y Facebook Messenger. Personalizá cada conversación al máximo y sacá capturas como si fueran reales. Ideal para contenido, memes o storytelling.
 
 💻 **Demo**: https://chatfunny.vercel.app/
+📲 **Ver demo en YouTube**: https://www.youtube.com/watch?v=JRoF44n_YXs
 
 ---
 
