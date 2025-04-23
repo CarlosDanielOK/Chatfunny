@@ -6,13 +6,6 @@ Crea chats ficticios de WhatsApp, Instagram, Facebook y Facebook Messenger. Pers
 
 ---
 
-## 🖥️ Vista previa
-
-![Captura Desktop](./assets/capturadesktop.png)
-![Captura Mobile](./assets/capturamobile.png)
-
----
-
 ## 🚀 Funcionalidades
 
 - Crea chats de WhatsApp, Instagram, Facebook y Messenger.
@@ -32,14 +25,24 @@ Crea chats ficticios de WhatsApp, Instagram, Facebook y Facebook Messenger. Pers
 - [React.js](https://es.react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Python](https://www.python.org/)
+- [Django](https://www.djangoproject.com/)
 - [html-to-image](https://www.npmjs.com/package/html-to-image) (para capturas)
 - [Framer Motion](https://motion.dev/) (animaciones)
 
 ---
 
-## 🚀 Instalación local:
+## 🖥️ Vista previa
 
-1. Cloná el repositorio:
+![Captura Desktop](./assets/capturadesktop.png)
+![Captura Mobile](./assets/capturamobile.png)
+
+---
+
+## 🔑 Instalación local:
+
 ```bash
-git clone https://github.com/CarlosDanielOK/CarlosChat-frontend.git
-cd CarlosChat-frontend
+git clone https://github.com/CarlosDanielOK/Chatfunny.git
+cd Chatfunny
+npm install
+npm run dev
