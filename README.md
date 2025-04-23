@@ -2,7 +2,7 @@
 
 Crea chats ficticios de WhatsApp, Instagram, Facebook y Facebook Messenger. Personalizá cada conversación al máximo y sacá capturas como si fueran reales. Ideal para contenido, memes o storytelling.
 
-🚀 **Demo**: https://chatfunny.vercel.app/
+💻 **Demo**: https://chatfunny.vercel.app/
 
 ---
 
@@ -13,28 +13,31 @@ Crea chats ficticios de WhatsApp, Instagram, Facebook y Facebook Messenger. Pers
 
 ---
 
-## ✨ Funcionalidades
+## 🚀 Funcionalidades
 
-- 🟢 WhatsApp, Instagram, Facebook y Messenger simulados.
-- 🖼️ Subida de imágenes y videos en el chat.
-- ✏️ Modificá el nombre del contacto, estado, foto de perfil y más.
-- 📸 Tomá capturas de pantalla directamente desde la app.
-- 💬 Enviá y respondé mensajes como si fuera real.
-- 📱 Diseño responsive para desktop y mobile.
+- Crea chats de WhatsApp, Instagram, Facebook y Messenger.
+- Subida de imágenes y videos en el chat.
+- Elige quién envía los mensajes.
+- Modificá el nombre del contacto, estado de conexión, y foto de perfil.
+- Tomá capturas de pantalla directamente desde la app.
+- Elimina mensajes enviados.
+- Enviá y respondé mensajes como si fuera real.
+- Diseño responsive para desktop y mobile.
 
 ---
 
 ## 🛠️ Tecnologías
 
 - [Next.js](https://nextjs.org/)
+- [React.js](https://es.react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [html2canvas](https://html2canvas.hertzen.com/) (para capturas)
-- [Framer Motion](https://www.framer.com/motion/) (animaciones)
+- [html-to-image](https://www.npmjs.com/package/html-to-image) (para capturas)
+- [Framer Motion](https://motion.dev/) (animaciones)
 
 ---
 
-## 🚀 Cómo usar
+## 🚀 Instalación local:
 
 1. Cloná el repositorio:
 ```bash
